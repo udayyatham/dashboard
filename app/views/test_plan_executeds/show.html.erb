@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Testplan executed:</b>
+  <%= @test_plan_executed.testPlan_executed_id %>
+</p>
+
+<p>
+  <b>Windows host:</b>
+  <%= @test_plan_executed.windows_host %>
+</p>
+
+<p>
+  <b>Browser:</b>
+  <%= @test_plan_executed.browser %>
+</p>
+
+<p>
+  <b>Environment:</b>
+  <%= @test_plan_executed.environment %>
+</p>
+
+<p>
+  <b>Release:</b>
+  <%= @test_plan_executed.release %>
+</p>
+
+<p>
+  <b>Starttime:</b>
+  <%= @test_plan_executed.starttime %>
+</p>
+
+<p>
+  <b>Endtime:</b>
+  <%= @test_plan_executed.endtime %>
+</p>
+
+<p>
+  <b>Totaltime:</b>
+  <%= @test_plan_executed.totaltime %>
+</p>
+
+<p>
+  <b>Test suite:</b>
+  <%= @test_plan_executed.test_suite_id %>
+</p>
+
+<p>
+  <b>Test plan:</b>
+  <%= @test_plan_executed.test_plan_id %>
+</p>
+
+<p>
+  <b>Test suite executed:</b>
+  <%= @test_plan_executed.test_suite_executed_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_plan_executed_path(@test_plan_executed) %> |
+<%= link_to 'Back', test_plan_executeds_path %>

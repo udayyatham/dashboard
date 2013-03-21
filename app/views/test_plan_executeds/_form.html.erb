@@ -1,0 +1,61 @@
+<%= form_for(@test_plan_executed) do |f| %>
+  <% if @test_plan_executed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test_plan_executed.errors.count, "error") %> prohibited this test_plan_executed from being saved:</h2>
+
+      <ul>
+      <% @test_plan_executed.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :testPlan_executed_id %><br />
+    <%= f.number_field :testPlan_executed_id %>
+  </div>
+  <div class="field">
+    <%= f.label :windows_host %><br />
+    <%= f.text_field :windows_host %>
+  </div>
+  <div class="field">
+    <%= f.label :browser %><br />
+    <%= f.text_field :browser %>
+  </div>
+  <div class="field">
+    <%= f.label :environment %><br />
+    <%= f.text_field :environment %>
+  </div>
+  <div class="field">
+    <%= f.label :release %><br />
+    <%= f.text_field :release %>
+  </div>
+  <div class="field">
+    <%= f.label :starttime %><br />
+    <%= f.date_select :starttime %>
+  </div>
+  <div class="field">
+    <%= f.label :endtime %><br />
+    <%= f.date_select :endtime %>
+  </div>
+  <div class="field">
+    <%= f.label :totaltime %><br />
+    <%= f.text_field :totaltime %>
+  </div>
+  <div class="field">
+    <%= f.label :test_suite_id %><br />
+    <%= f.number_field :test_suite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :test_plan_id %><br />
+    <%= f.number_field :test_plan_id %>
+  </div>
+  <div class="field">
+    <%= f.label :test_suite_executed_id %><br />
+    <%= f.number_field :test_suite_executed_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

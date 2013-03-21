@@ -1,0 +1,94 @@
+<div id='mainContainer'>
+	<div id='leftContainer'>
+		<div id='teamNameContainer'>
+	    <%= form_tag({:action => 'home'}, {:method => :get}) do %>
+		<%=select "teamnames", "index", @teamList.each_with_index.map {|name, index| [name.teamname,index]}%>
+		<%= submit_tag 'Save' %>
+		<% end %>
+		</div>
+		<div id='testSuiteXmlNamesContainer'>
+			<p>
+				testSuitXmlNames
+			</p>
+			<%=@team_name%> 
+		</div>
+	</div>
+	<div id='rightContainer'>
+		<div id='testSuiteDescriptionContainer'>
+			<div id='testSuiteInfoContainer'>
+				<table width="100%" border="0" cellpadding="4" cellspacing="1" bordercolor="#CCCCCC" bgcolor="#CCCCCC">
+					<tr bgcolor="#FFFFFF">
+						<td >TestSuite: </td>
+						<td >testSuite.suiteName</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td>Environment: </td>
+						<td>testSuite.environment</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td>Build Number: </td>
+						<td>testSuite.buildNumber</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td>Automation Server: </td>
+						<td>testSuite.hostName</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td>Start Time: </td>
+						<td>testSuite.suiteStartTime</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td>End Time: </td>
+						<td>testSuite.suiteEndTime</td>
+					</tr>
+					<tr bgcolor="#FFFFFF">
+						<td>Total Time: </td>
+						<td> testSuite.suiteTimeTaken</td>
+					</tr>
+				</table>
+				<br/>
+				<br/>
+			</div>
+			<div id='testSuitePieChartContainer' >
+				<p>
+					testSuitePieChartContainer
+				</p>
+			</div>
+		</div>
+		<div id='testPlanDetailsContainer'>
+			<p>
+				testPlanDetailsContainer
+			</p>
+			<table width="100%" border="0" cellspacing="1" cellpadding="1">
+        <tr align="center"> 
+          <td width="20%" height="30" bgcolor="#333333"><b><font color="#FFFFFF">Plan Name</font></b></td>
+          <td width="20%" bgcolor="#333333"><b><font color="#FFFFFF">Owner Name</font></b></td>
+          <td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Total Cases</font></b></td>
+          <td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Executed</font></b></td>
+          <td width="15%" bgcolor="#669933"><b><font color="#FFFFFF">Passed</font></b></td>
+          <td width="15%" bgcolor="#FF3300"><b><font color="#FFFFFF">Failed</font></b></td>
+        </tr>
+		<#list testSuite.testPlansResultList as testPlan>
+        <tr align="center" bgcolor="#FFFFFF">
+        <#if testPlan.failedCount?? && testPlan.failedCount!=0>
+        	<td height="30"><a href="#${testPlan.planName}"><b><u>${testPlan.planName!"Not available"}</u></b></a></td>
+        <#elseif testSuite.suiteResultPath??>
+        	<td height="30"><a href="${testSuite.suiteResultPath}#${testPlan.planName}"><b><u>${testPlan.planName!"Not available"}</u></b></a></td>
+        <#else>
+        	<td height="30">${testPlan.planName!"Not available"}</td>
+        </#if>
+          
+          <td>${testPlan.planOwner!"SQAT"}</td>
+          <td>${testPlan.totalCases!"Not available"}</td>
+          <td>${testPlan.executedTestCases!"Not available"}</td>
+          <td>${testPlan.passedCount!"Not available"}</td>
+          <td>${testPlan.failedCount!"Not available"}</td>
+        </tr>
+       </#list>
+		</table>
+	</td>
+  </tr>
+</table>
+		</div>
+	</div>
+</div>

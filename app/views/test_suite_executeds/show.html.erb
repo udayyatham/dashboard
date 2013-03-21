@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Testsuite executed:</b>
+  <%= @test_suite_executed.testsuite_executed_id %>
+</p>
+
+<p>
+  <b>Jenkins:</b>
+  <%= @test_suite_executed.jenkins_id %>
+</p>
+
+<p>
+  <b>Build number:</b>
+  <%= @test_suite_executed.build_number %>
+</p>
+
+<p>
+  <b>Build paraml:</b>
+  <%= @test_suite_executed.build_paramL %>
+</p>
+
+<p>
+  <b>Environment:</b>
+  <%= @test_suite_executed.environment %>
+</p>
+
+<p>
+  <b>Release:</b>
+  <%= @test_suite_executed.release %>
+</p>
+
+<p>
+  <b>Browser:</b>
+  <%= @test_suite_executed.browser %>
+</p>
+
+<p>
+  <b>Executedbranch:</b>
+  <%= @test_suite_executed.executedBranch %>
+</p>
+
+<p>
+  <b>Starttime:</b>
+  <%= @test_suite_executed.starttime %>
+</p>
+
+<p>
+  <b>Endtime:</b>
+  <%= @test_suite_executed.endtime %>
+</p>
+
+<p>
+  <b>Totaltime:</b>
+  <%= @test_suite_executed.totaltime %>
+</p>
+
+<p>
+  <b>Servername:</b>
+  <%= @test_suite_executed.servername %>
+</p>
+
+<p>
+  <b>Test suite:</b>
+  <%= @test_suite_executed.test_suite_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_suite_executed_path(@test_suite_executed) %> |
+<%= link_to 'Back', test_suite_executeds_path %>

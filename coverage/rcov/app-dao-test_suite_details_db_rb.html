@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/dao/test_suite_details_db.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Sqat dashboard C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/dao/test_suite_details_db.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-dao-test_suite_details_db_rb.html">app/dao/test_suite_details_db.rb</a></td>
+            <td class='right_align'><tt>31</tt></td>
+            <td class='right_align'><tt>12</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>87.10%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:87px"></div>
+        <div class="uncovered" style="width:13px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>66.67%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:67px"></div>
+        <div class="uncovered" style="width:33px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> require_relative '../models/test_suite'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a> require_relative '../models/test_suite_executed'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a> class TestSuiteDetailsDb #DAO class</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>   #return the suite name based on Team name</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   def  getSuiteNames(teamName)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line9">9</a>     return TestSuite.select(&quot;suite_name&quot;).where(&quot;teamname = ?&quot;,teamName);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>   #returns all the team names</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>   def getTeamNames</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a>     #return TestSuite.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   def getTestSuiteId(suiteName)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line18">18</a>        return TestSuite.where(:suite_name =&gt;suiteName ).select(:testsuite_id_pk)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>   #returns first record</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   def getSuiteExectedObj(suiteId)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line23">23</a>     return TestSuiteExecuted.find(:all,:conditions =&gt; { :test_suite_id =&gt;suiteId}).last</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>   end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   def getSuiteName(testSuiteExecutedId)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line27">27</a>   return TestSuite.find_by_sql(&quot;select suite_name from test_suite where testsuite_id_pk =(SELECT test_suite_id FROM test_suite_executed tse WHERE</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a>     tse.testsuite_executed_id = #{testSuiteExecutedId} )&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2013-03-07 09:57:17 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

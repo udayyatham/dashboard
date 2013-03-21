@@ -1,0 +1,140 @@
+<style type="text/css">
+    div, table, tr, td, p, a, span {
+        font-weight: normal;
+        color: #000;
+        font-family: Arial, Helvetica, Verdana, Sans-serif;
+        font-size: 12px;
+        text-decoration: none;
+    }
+</style>
+<br/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+<script type="text/javascript">
+var plansWiseCobrandsInfoBeanObj =<%= @plansWiseCobrandsInfoBeanObj.to_json.html_safe%>
+    ;
+    
+    	document.write('<br/>');
+        document.write('plansWiseCobrandsInfoBeanObj ' + plansWiseCobrandsInfoBeanObj);
+        document.write('<br/>');
+        document.write('plansWiseCobrandsInfoBeanObj ' + plansWiseCobrandsInfoBeanObj.cobrandInfoBeanHash);
+        document.write('<br/>');
+        document.write('plansWiseCobrandsInfoBeanObj ' + plansWiseCobrandsInfoBeanObj.testPlanExecutedIdList[0]);
+        document.write('<br/>');
+        document.write('plansWiseCobrandsInfoBeanObj ' + plansWiseCobrandsInfoBeanObj.environment);
+        document.write('<br/>');
+        document.write('plansWiseCobrandsInfoBeanObj ' + plansWiseCobrandsInfoBeanObj.release);
+        document.write('<br/>');
+        document.write('plansWiseCobrandsInfoBeanObj ' + plansWiseCobrandsInfoBeanObj.suiteName);
+       
+    model = new Backbone.Model({
+        data : plansWiseCobrandsInfoBeanObj
+    });
+    
+    document.write('<br/>');
+    document.write('model'+ model);
+    
+    var TeamsList = Backbone.View.extend({
+    initialize : function() {
+    this.teamsTemplate = $('#displayCobrandwise').children();
+    },
+    el : '#displayCobrandwise',
+    events : {
+   
+    },
+    render : function() {
+            var data = this.model.get('data');
+                for (var key in data) {
+                        $.each(data,function(key,value){
+                                console.log("key : "+key+"value : "+value);
+                                    //$("<option></option>", {value: key, text: key}).appendTo();
+                                     });
+                     }
+        }
+
+    });
+
+    var view = new TeamsList({
+        model : model
+    });
+    view.render(); 
+    
+</script>
+
+<div id="displayCobrandwise" class="displaycobrandwise">
+
+
+
+    <div class="infobar">
+        <label id="environment">Environment :  <%= @plansWiseCobrandsInfoBeanObj.environment%></label> 
+        <label id="release">Release : <%= @plansWiseCobrandsInfoBeanObj.release%></label>
+        <div class="clear"></div>
+    </div>
+    <div class="table-heading">
+        <ul>
+            <li class="col-1 heading"><b>Cobrand</b></li>        
+            <li class="col-2 heading"><b>Browser</b></li>
+            <li class="col-3 heading"><b>Time taken</b></li>
+            <li class="col-4 heading"><b>Total Cases</b></li>
+            <li class="col-5 heading"><b>Executed</b></li>
+            <li class="col-6 heading green"><b>Passed</b></li>
+            <li class="col-7 heading red"><b>Failed</b></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+
+
+<%@plansWiseCobrandsInfoBeanObj.cobrandInfoBeanHash.each {|cobrandName,cobrandInfoBean|%>
+    
+<div class="cobrandDetails">
+    <ul>
+        <li class="col-1">
+            <a href="testCaseDetails?tpeidl=<%= @plansWiseCobrandsInfoBeanObj.testPlanExecutedIdList%>&cobrand=<%= cobrandInfoBean.cobrandName%>">
+                 <%= cobrandInfoBean.cobrandName%></a>
+        </li>
+        <li class="colspan-6">
+                
+            <% cobrandInfoBean.browserInfoBeanList.each{ |browserInfoBean| %>
+            <div>
+            <ul class="repeatingcell clear">        
+        
+        
+                
+                <li class="col-2" >
+                    <a href="testCaseDetails?tpeid=<%= browserInfoBean.testPlanExecutedId%>&cobrand=<%= cobrandInfoBean.cobrandName%>"> 
+                        <%= browserInfoBean.browser%></a>
+                </li>
+                <li class="col-3"><%= browserInfoBean.timeBean.totalTime%></li>
+                <li class="col-4"><%= cobrandInfoBean.countBean.totalCount%></li>
+                <li class="col-5"><%= cobrandInfoBean.countBean.executed%></li>
+                <li class="col-6"><font color=green><%= cobrandInfoBean.countBean.passedCount%></font></li>
+                <li class="col-7"><font color=red><%= cobrandInfoBean.countBean.failedCount%></font></li>
+            </ul>
+        
+        
+        <div class="clear"></div>
+        </div>
+        
+        <%}%>
+        
+    </li>
+    </ul>
+    <div class="clear"></div>
+    
+</div>  
+
+  
+      
+    
+   <!--
+    <%}%>
+       
+      <%=link_to_function "Back", "history.back()"%>-->
+   
+   
+   <a href="testsuitesInfo?suiteName=Smoke Test Suite"><b>Back</b></a>
+   
+</div>
+

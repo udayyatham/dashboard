@@ -1,0 +1,227 @@
+<style type="text/css">
+    div, table, tr, td, p, a, span,li {
+        font-weight: normal;
+        color: #000;
+        font-family: Arial, Helvetica, Verdana, Sans-serif;
+        font-size: 12px;
+        text-decoration: none;
+    }
+</style>
+<br/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+<script type="text/javascript">
+var teamWiseSuitesHash =<%= @teamWiseSuitesHash.to_json.html_safe%>
+    $(document).ready(function(){
+
+    model = new Backbone.Model({
+        data : teamWiseSuitesHash
+    });
+
+    var TeamsList = Backbone.View.extend({
+    initialize : function() {
+    this.teamsTemplate = $('#teamNames').children();
+    },
+    el : '#teamNames',
+    events : {
+    "change .select-team" : function() {
+            var data = this.model.get('data');
+            var selectedValue =document.getElementById("teamNameList").value;
+                $('#suiteslist').empty();
+                console.log("selected value"+selectedValue);
+                for (var teamName in data) 
+                {
+                    if(teamName==selectedValue){
+                        var suiteHash = data[teamName];
+                        var count=0;
+                        var selectObj = document.getElementById("suiteslist");
+
+                        for (var suiteName in suiteHash) 
+                        {
+                                //alert('suiteName '+suiteName);
+                                var suiteContainerDiv = document.createElement("div");
+                                suiteContainerDiv.id="suiteContainerDiv"+(++count);
+                                var buttonSuiteAnchorDiv = document.createElement("div");
+                                buttonSuiteAnchorDiv.id="buttonSuiteAnchorDiv"+count;
+                                var suiteNameAnchor = document.createElement("a");
+                                suiteNameAnchor.appendChild(document.createTextNode(suiteName));
+                                suiteNameAnchor.href='testsuitesInfo?seid='+suiteHash[suiteName][0].suiteExecutedId;
+                                var button = document.createElement("button");
+                                button.appendChild(document.createTextNode('+'));
+                                button.id='suitebutton'+(count);
+                                button.class = "suitbutton";
+                                button.value=suiteName;
+                                buttonSuiteAnchorDiv.appendChild(button);
+                                buttonSuiteAnchorDiv.appendChild(suiteNameAnchor);
+                                suiteContainerDiv.appendChild(buttonSuiteAnchorDiv);
+                                var suitesHistoryMenuDiv = document.createElement("div");
+                                suitesHistoryMenuDiv.id="suitesHistoryMenuDiv"+(count);
+                                suiteContainerDiv.appendChild(suitesHistoryMenuDiv);
+                                selectObj.appendChild(suiteContainerDiv);
+                        }
+                        
+                    }
+                        
+                }
+               
+        },
+
+    },
+    render : function() {
+            var data = this.model.get('data');
+                var index =0;
+                for (var key in data) {
+                                var selectObj = document.getElementById("teamNameList");
+                                var opt = document.createElement("option");
+                                opt.appendChild(document.createTextNode(key));
+                                opt.value = key;
+                                selectObj.appendChild(opt);
+                     }
+        }
+
+    });
+
+  
+  
+    var SuitesList = Backbone.View.extend({
+    initialize : function() {
+    this.suitesTemplate = $('#suiteNames').children();
+    },
+    el : '#suiteNames',
+    events : {     
+        "click button": "render"
+        }
+ ,
+    render : function(ev) { 
+              var recentSuiteExecutedDiv=document.getElementById($(ev.target).attr('id')).parentNode.nextSibling;
+              console.log('clicked target\'s id: '+$(ev.target).attr('id'));
+              console.log('clicked target\'s, parent\'s id: '+document.getElementById($(ev.target).attr('id')).parentNode.id);
+              console.log('clicked on'+recentSuiteExecutedDiv.id);
+              var data = this.model.get('data');
+              var selectedValue =$(ev.target).val();
+              if($(ev.target).text()=='+'){
+                  $(ev.target).text("-");
+                        for (var teamName in data)
+                        {
+                           var suiteHash = data[teamName];
+                           for (var suiteName in suiteHash)
+                           {
+                             console.log("selected value : "+selectedValue+" (suiteName==selectedValue)"+(suiteName==selectedValue));
+                             if(suiteName==selectedValue){
+                             suiteExecutedList=suiteHash[suiteName];
+                             //print only when clicked on button link in anchor tags gerating a link dynamically
+                            for(var index=0;index < suiteExecutedList.length;index++) {
+                                        var suiteExecutedObj=suiteExecutedList[index];  
+                                        var selectObj = recentSuiteExecutedDiv;
+                                        var a = document.createElement("a");
+                                        a.href='testsuitesInfo?seid='+suiteExecutedObj.suiteExecutedId;
+                                        a.target='_self';
+                                        a.appendChild(document.createTextNode(suiteExecutedObj.startTime));
+                                        selectObj.appendChild(a);
+                              }
+                              break;
+                        }
+                }
+               
+        }
+              }else{
+                  //clear the context
+                  $(ev.target).text("+");
+                  $("#"+recentSuiteExecutedDiv.id).empty();
+              }
+
+        }
+
+    });
+
+
+
+//creating object for team display on change suite with button display
+    var teamView = new TeamsList({
+        model : model
+    });
+    teamView.render(); 
+//creating object for suite Listing with anchors    
+    var suiteView = new SuitesList({
+        model : model
+    });
+
+    });
+</script>
+
+TeamWiseSuitesHash:container
+<%= @teamWiseSuitesHash.to_json.html_safe%>--##
+------------------------------
+
+
+    <div id="teamNames">
+        <select id="teamNameList" name="teamNameList" class="select-team">
+            <option value="Smoke Test Suite" selected="selected">Smoke Test Suite</option>
+        </select>
+        
+    </div>
+
+    <div id="suiteNames" style="width:100%;">  
+        <div id='suiteslist'></div>          
+    </div>
+----------------------------------------
+<table width="100%" border="0" cellpadding="4" cellspacing="1" bordercolor="#CCCCCC" bgcolor="#CCCCCC">
+    <tr bgcolor="#FFFFFF">
+        <td width="20%">TestSuite: </td>
+        <td width="80%"><%= @suiteInfoBean.suiteName%> </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Environment: </td>
+        <td><%= @suiteInfoBean.environment %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Build Number: </td>
+        <td><%= @suiteInfoBean.buildNumber %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Automation Server: </td>
+        <td><%= @suiteInfoBean.automationServer %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Start Time: </td>
+        <td><%= @suiteInfoBean.timeBean.startTime %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>End Time: </td>
+        <td><%= @suiteInfoBean.timeBean.endTime %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Total Time: </td>
+        <td><%= @suiteInfoBean.timeBean.totalTime %> minutes </td>
+    </tr>
+</table>
+<br/>
+<br/>
+
+<table width="100%" bordertestPlan_executed_id="0" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
+    <tr>
+        <td>
+        <table width="100%" border="0" cellspacing="1" cellpadding="1">
+            <tr align="center">
+                <td width="20%" height="30" bgcolor="#333333"><b><font color="#FFFFFF">Plan Names</font></b></td>
+                <td width="20%" bgcolor="#333333"><b><font color="#FFFFFF">Owner Name</font></b></td>
+                <td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Total Cases</font></b></td>
+                <td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Executed</font></b></td>
+                <td width="15%" bgcolor="#669933"><b><font color="#FFFFFF">Passed</font></b></td>
+                <td width="15%" bgcolor="#FF3300"><b><font color="#FFFFFF">Failed</font></b></td>
+            </tr>
+            <%for item in @suiteInfoBean.testPlanBeanlist%>
+            <tr align="center" bgcolor="#FFFFFF">
+                <td height="30"><a href="displaycobrandWise?pid=<%= item.testPlanId%>
+                &seid=<%= item.testSuiteExecutedId%>"><b><u><%= item.planName%></u></b></a></td>
+                <td><%= item.owner%></td>
+                <td><%= item.countBean.totalCount%></td>
+                <td><%= item.countBean.executed%></td>
+                <td><%= item.countBean.passedCount%></td>
+                <td><%= item.countBean.failedCount%></td>
+            </tr>
+            <%end%>
+        </table></td>
+    </tr>
+</table>

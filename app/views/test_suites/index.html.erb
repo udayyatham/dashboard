@@ -1,0 +1,31 @@
+<h1>Listing test_suites</h1>
+
+<table>
+  <tr>
+    <th>Testsuite id pk</th>
+    <th>Suite name</th>
+    <th>Suite xml file</th>
+    <th>Teamnam</th>
+    <th>Suite description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @test_suites.each do |test_suite| %>
+  <tr>
+    <td><%= test_suite.testsuite_id_pk %></td>
+    <td><%= test_suite.suite_name %></td>
+    <td><%= test_suite.suite_xml_file %></td>
+    <td><%= test_suite.teamnam %></td>
+    <td><%= test_suite.suite_description %></td>
+    <td><%= link_to 'Show', test_suite %></td>
+    <td><%= link_to 'Edit', edit_test_suite_path(test_suite) %></td>
+    <td><%= link_to 'Destroy', test_suite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Test suite', new_test_suite_path %>

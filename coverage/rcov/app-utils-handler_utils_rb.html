@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/utils/handler_utils.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Sqat dashboard C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/utils/handler_utils.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-utils-handler_utils_rb.html">app/utils/handler_utils.rb</a></td>
+            <td class='right_align'><tt>37</tt></td>
+            <td class='right_align'><tt>25</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>40.54%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:41px"></div>
+        <div class="uncovered" style="width:59px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>12.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:12px"></div>
+        <div class="uncovered" style="width:88px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class HandlerUtils</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line3">3</a>   # calculates passed,failed,skipped,total counts information and returns countInfoBean containing them</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   def self.getCountInfoBean(testPlanExecutedId)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line5">5</a>     testCaseDetailsDBObj=TestCaseDetailsDb.new();</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line6">6</a>     if(testPlanExecutedId==nil) then</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line7">7</a>       raise &quot;Expecting Plan Executed Id&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line9">9</a>     passedCount = testCaseDetailsDBObj.getResultCount(&quot;Passed&quot;,testPlanExecutedId);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line10">10</a>     failedCount = testCaseDetailsDBObj.getResultCount(&quot;Failed&quot;,testPlanExecutedId);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line11">11</a>     skippedCount = testCaseDetailsDBObj.getResultCount(&quot;skipped&quot;,testPlanExecutedId);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line12">12</a>     executedCount=(passedCount+failedCount);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line13">13</a>     totalCasesCount= (passedCount+failedCount+skippedCount);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line15">15</a>     Rails.logger.info(&quot;passedCount #{passedCount} , failedCount&quot;+</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>     &quot;#{failedCount}, skippedCount #{skippedCount}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line17">17</a>     countInfoObj=CountInfoBean.new(passedCount,failedCount,skippedCount,totalCasesCount,executedCount);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line18">18</a>     return countInfoObj</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   def self.getCountInfoBeanCobrandWise(testPlanExecutedId,cobrand)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line22">22</a>     testCaseDetailsDBObj=TestCaseDetailsDb.new();</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line23">23</a>     if(testPlanExecutedId==nil) then</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line24">24</a>       raise &quot;Expecting Plan Executed Id&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line26">26</a>     passedCount = testCaseDetailsDBObj.getCobrandsWiseResult(&quot;Passed&quot;,testPlanExecutedId,cobrand);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line27">27</a>     failedCount = testCaseDetailsDBObj.getCobrandsWiseResult(&quot;Failed&quot;,testPlanExecutedId,cobrand);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line28">28</a>     skippedCount = testCaseDetailsDBObj.getCobrandsWiseResult(&quot;skipped&quot;,testPlanExecutedId,cobrand);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line29">29</a>     executedCount=(passedCount+failedCount);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line30">30</a>     totalCasesCount= (passedCount+failedCount+skippedCount);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line32">32</a>     Rails.logger.info(&quot;passedCount #{passedCount} , failedCount&quot;+</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>     &quot;#{failedCount}, skippedCount #{skippedCount}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line34">34</a>     countInfoObj=CountInfoBean.new(passedCount,failedCount,skippedCount,totalCasesCount,executedCount);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line35">35</a>     return countInfoObj</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2013-03-07 09:57:17 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

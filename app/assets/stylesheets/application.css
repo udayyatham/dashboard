@@ -1,0 +1,98 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+html.dashboard, .dashboard object, .dashboard iframe, .dashboard h1, .dashboard h2, .dashboard h3, .dashboard h4, .dashboard h5, .dashboard h6, .dashboard h7, .dashboard p, .dashboard blockquote, .dashboard pre, .dashboard abbr, .dashboard acronym, .dashboard address, .dashboard code, .dashboard del, .dashboard dfn, .dashboard em, .dashboard img, .dashboard q, .dashboard dl, .dashboard dt, .dashboard dd, .dashboard ol, .dashboard ul, .dashboard li, .dashboard fieldset, .dashboard form, .dashboard label, .dashboard legend, .dashboard table, .dashboard caption, .dashboard tbody, .dashboard tfoot, .dashboard thead, .dashboard tr, .dashboard th, .dashboard td, article, .dashboard aside, .dashboard dialog, .dashboard figure, .dashboard footer, .dashboard header, .dashboard hgroup, .dashboard nav, .dashboard section {
+    border: 0 none;
+    color: #333333;
+    font-family: Arial,Helvetica,Verdana,Sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.25em;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard .body-container {
+    background-color: #FFFFFF;
+    margin: 0 auto;
+    padding: 15px 0;
+    width: 960px;
+}
+
+.left{
+     float:left;
+}
+.team-names-panel{
+    border:1px solid #CCCCCC;
+    line-height: 34px;
+    padding: 0 10px;
+    background-color:#EEEEEE;
+    margin:0 0 0 0;
+}
+.team-names-panel label{
+    line-height:35px;
+    float:left;
+    font-weight:bold;
+    margin:0 10px 0 0;
+}
+.search-icon{
+    background:url('search-icon.gif') no-repeat;
+    width:22px;
+    height:20px;
+    display:block;
+    float:left;
+}
+
+.dashboard .navigation-container {
+    border: 1px solid #DDDDDD;
+    width: 158px;
+    background:#d6ebf5;
+    height:300px;
+    overflow:auto;
+}
+
+.dashboard .navigation-node{
+    height:30px;
+    word-wrap:break-word;
+    padding:3px;
+    background-color:#3399cc;
+    color:#fff;
+ 
+ }
+
+.dashboard .col-1 {
+    width: 40px;
+}
+.dashboard .col-2 {
+    width: 100px;
+}
+.dashboard .col-3 {
+    width: 160px;
+}
+.dashboard .col-4 {
+    width: 220px;
+}
+.dashboard .col-5 {
+    width: 280px;
+}
+.clear{clear:both;}
+.right{float:right}
+.pushright-1{margin-right:5px;}
+.pushright-2{margin-right:10px;}
+.pushright-4{margin-right:20px;}
+.pushtop-3{margin-top:15px;}
+
+
+
+

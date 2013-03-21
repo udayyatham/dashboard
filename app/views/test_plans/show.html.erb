@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Testplan id pk:</b>
+  <%= @test_plan.testplan_id_pk %>
+</p>
+
+<p>
+  <b>Plan name:</b>
+  <%= @test_plan.plan_name %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @test_plan.owner %>
+</p>
+
+<p>
+  <b>Plan description:</b>
+  <%= @test_plan.plan_description %>
+</p>
+
+<p>
+  <b>Test suite:</b>
+  <%= @test_plan.test_suite_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_plan_path(@test_plan) %> |
+<%= link_to 'Back', test_plans_path %>

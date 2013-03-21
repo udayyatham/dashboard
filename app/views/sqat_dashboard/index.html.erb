@@ -1,0 +1,15 @@
+
+
+
+
+<script type="text/javascript">
+  $(function() {
+  	//document.write("View page");
+    // Blog is the app name
+    window.router = new Blog.Routers.SqatDashboardsRouter({param1: <%= @suiteName.to_json.html_safe -%>});
+    Backbone.history.start(); 
+  });
+</script>
+Rails app
+<div id="subdiv2">
+

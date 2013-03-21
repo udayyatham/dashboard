@@ -1,0 +1,31 @@
+<h1>Listing test_plans</h1>
+
+<table>
+  <tr>
+    <th>Testplan id pk</th>
+    <th>Plan name</th>
+    <th>Owner</th>
+    <th>Plan description</th>
+    <th>Test suite</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @test_plans.each do |test_plan| %>
+  <tr>
+    <td><%= test_plan.testplan_id_pk %></td>
+    <td><%= test_plan.plan_name %></td>
+    <td><%= test_plan.owner %></td>
+    <td><%= test_plan.plan_description %></td>
+    <td><%= test_plan.test_suite_id %></td>
+    <td><%= link_to 'Show', test_plan %></td>
+    <td><%= link_to 'Edit', edit_test_plan_path(test_plan) %></td>
+    <td><%= link_to 'Destroy', test_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Test plan', new_test_plan_path %>

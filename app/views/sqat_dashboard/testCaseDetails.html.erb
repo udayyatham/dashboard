@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			div#overlay {
+				display: none;
+				z-index: 2;
+				background: #000;
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				top: 0px;
+				left: 0px;
+				text-align: center;
+			}
+			div#specialBox {
+				display: none;
+				position: relative;
+				z-index: 3;
+				margin: 20px auto 0px auto;
+				width: 1040px;
+				height: 500px;
+				background: #FFF;
+				color: #000;
+			}
+			div#wrapper {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				padding-left: 24px;
+			}
+			li {
+				display: inline;
+				padding-left: 50px;
+			}
+		</style>
+		<script type="text/javascript">
+			function toggleOverlay() {
+				var overlay = document.getElementById('overlay');
+				var specialBox = document.getElementById('specialBox');
+				overlay.style.opacity = .8;
+				if (overlay.style.display == "block") {
+					overlay.style.display = "none";
+					specialBox.style.display = "none";
+				} else {
+					overlay.style.display = "block";
+					specialBox.style.display = "block";
+				}
+			}
+		</script>
+	</head>
+	<body onload="toggleOverlay()">
+		<!-- Start Overlay -->
+		<div id="overlay"></div>
+		<!-- End Overlay -->
+		<!-- Start Special Centered Box -->
+		<div id="specialBox">
+			<div>
+			<%=link_to_function "Close", "history.back()"%>
+			</div>
+			<div id="mainDiv" name="myDiv" title="Example Div Element"
+			style="font-family: Helvetica; font-size: 12pt; border: 1px solid black;">
+				<% @browserwisetestCaseInfo.each do |browserWiseTestCaseDetails| %>
+				<div id="subDiv1" name="subDiv1" title="Subdivision Div Element"
+				style="color: #000000; border: 1px solid black; background-color:#00BFFF;">
+					<ul class=”toolbar”>
+						<li>
+							Browser: <font color="#FFFFFF"><b> <%= browserWiseTestCaseDetails.browserName%></b></font>
+						</li>
+						<li>
+							Version:<b><%= browserWiseTestCaseDetails.browserVersion%></b>
+						</li>
+						<li>
+							Remote Client Host:<b><%= browserWiseTestCaseDetails.windowsHost%></b>
+						</li>
+					</ul>
+
+				</div>
+
+				<div id="subDiv2" name="subDiv2" title="Subdivision Div Element"
+				style="color: #000000; border: 1px solid black; background-color:	#A9A9A9;">
+					<% testCaseDetailsBeanList = browserWiseTestCaseDetails.testCaseDetailsBeanList%>
+
+					<%testCaseDetailsBeanList.each do |testCaseDetailsBean|%>
+					<% timeBean=testCaseDetailsBean.timeBean %>
+					<table width="99%" border="0" cellpadding="4" cellspacing="1" bgcolor="#CCCCCC" align="center">
+						<br>
+						<tr bgcolor="#FFFFFF">
+							<td width="20%" height="25">Test Case ID:&nbsp;<%= testCaseDetailsBean.caseNo %></td>
+							<td colspan="2">Result:&nbsp; <b> <% if testCaseDetailsBean.result == 'Failed' %> <font color="#FF3300"> <% elsif testCaseDetailsBean.result == 'Passed'%> <font color="#669933"> <% else %> <font color="#669933"> <%end%>
+										<%= testCaseDetailsBean.result %></b></td>
+							<td width="40%">Start Time:&nbsp;<%= timeBean.startTime %></td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td height="27">Description:</td>
+							<td colspan="2">
+							<p style="word-wrap: break-word;width:400px">
+								<%= testCaseDetailsBean.description %>
+							</p></td>
+							<td>End Time:&nbsp;<%= timeBean.endTime %></td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td width="20%" align="left">Snapcat Host:&nbsp;<b><%= browserWiseTestCaseDetails.windowsHost%></b></td>
+							<td height="25"></td>
+							<td width="20%"></td>
+							<td>Execution Time:&nbsp;<%= timeBean.totalTime %></td>
+						</tr>
+						<% if(testCaseDetailsBean.result=='Failed')%>
+
+						<tr bgcolor="#FFFFFF">
+							<td height="25">Failure Reason</td>
+							<td colspan="3">
+							<p style="word-wrap: break-word;width:700px">
+								<%= testCaseDetailsBean.failedReason %>
+							</p></td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td height="25">Failed URL</td>
+							<td colspan="3">
+							<p style="word-wrap: break-word;width:700px">
+								<%= testCaseDetailsBean.failedUrl %>
+							</p></td>
+						</tr>
+						<tr bgcolor="#FFFFFF">
+							<td height="25">Failed Screenshot URL</td>
+							<td colspan="3">
+							<p style="word-wrap: break-word;width:700px">
+								<a href="${testCase.screenshotPath}" target="_blank"><%= testCaseDetailsBean.failedScreenShot %></a>
+							</p></td>
+						</tr>
+						<%end%>
+
+						<tr bgcolor="#FFFFFF">
+							<td height="25">Email Id Used</td>
+							<td colspan="3">
+							<p style="word-wrap: break-word;width:700px">
+							</p></td>
+						</tr>
+
+					</table>
+					<% end %>
+				</div>
+				<br />
+				<%end%>
+			</div>
+			<%=link_to_function "Close", "history.back()"%>
+		</div>
+		
+	</body>
+</html>

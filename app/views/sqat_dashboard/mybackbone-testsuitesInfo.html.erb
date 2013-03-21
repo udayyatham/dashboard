@@ -1,0 +1,159 @@
+<style type="text/css">
+	div, table, tr, td, p, a, span {
+		font-weight: normal;
+		color: #000;
+		font-family: Arial, Helvetica, Verdana, Sans-serif;
+		font-size: 12px;
+		text-decoration: none;
+	}
+</style>
+
+<b style="color: #A92730"> SuiteInfoView </b>
+<div id="main"></div>
+<div id="cobrand_details"></div>
+<div id='back_button' style='display:none'><%=link_to_function "Back", "history.back()"%></div>
+
+<script type="text/template" id="suiteinfo_template">
+	<div id="subdiv">
+	<table width="100%" border="0" cellpadding="4" cellspacing="1" bordercolor="#CCCCCC" bgcolor="#CCCCCC">
+	<tr bgcolor="#FFFFFF">
+	<td width="20%">TestSuite: </td>
+	<td width="80%"><%= @suiteInfoBean.suiteName%> </td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td>Environment: </td>
+	<td><%= @suiteInfoBean.environment %></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td>Build Number: </td>
+	<td><%= @suiteInfoBean.buildNumber %></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td>Automation Server: </td>
+	<td><%= @suiteInfoBean.automationServer %></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td>Start Time: </td>
+	<td><%= @suiteInfoBean.timeBean.startTime %></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td>End Time: </td>
+	<td><%= @suiteInfoBean.timeBean.endTime %></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	<td>Total Time: </td>
+	<td><%= @suiteInfoBean.timeBean.totalTime %> minutes </td>
+	</tr>
+	</table>
+	<br/>
+	<table width="100%" bordertestPlan_executed_id="0" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
+	<tr>
+	<td>
+	<table width="100%" border="0" cellspacing="1" cellpadding="1">
+	<tr align="center">
+	<td width="20%" height="30" bgcolor="#333333"><b><font color="#FFFFFF">Plan Names</font></b></td>
+	<td width="20%" bgcolor="#333333"><b><font color="#FFFFFF">Owner Name</font></b></td>
+	<td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Total Cases</font></b></td>
+	<td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Executed</font></b></td>
+	<td width="15%" bgcolor="#669933"><b><font color="#FFFFFF">Passed</font></b></td>
+	<td width="15%" bgcolor="#FF3300"><b><font color="#FFFFFF">Failed</font></b></td>
+	</tr>
+	<%for item in @suiteInfoBean.testPlanBeanlist%>
+	<tr align="center" bgcolor="#FFFFFF">
+	<td height="30"><a id="panlinfolink" href="/sqat_dashboard/displaycobrandWise?pid=<%= item.testPlanId%>
+	&seid=<%= item.testSuiteExecutedId%>"><b><u><%= item.planName%></u></b></a></td>
+	<td><%= item.owner%></td>
+	<td><%= item.countBean.totalCount%></td>
+	<td><%= item.countBean.executed%></td>
+	<td><%= item.countBean.passedCount%></td>
+	<td><%= item.countBean.failedCount%></td>
+	</tr>
+	<%end%>
+	</table></td>
+	</tr>
+	</table>
+	</div>
+</script>
+
+<script type="text/javascript">
+	SuiteInfoView = Backbone.View.extend({
+		initialize : function() {
+			console.log('Backbone View initialized');
+			this.render();
+		},
+		render : function() {
+			console.log("in render function");
+			var template = _.template($("#suiteinfo_template").html(), {});
+			this.$el.html(template);
+		},
+		events : {
+			"click #panlinfolink" : "getBean"
+
+		},
+		getBean : function(event) {
+		
+			var hrefValue = $("#panlinfolink").attr('href');
+			var parameters = hrefValue.split("?");
+			var individualParams = parameters[1].split("&");
+			var param1 = individualParams[0].split("=");
+			var param2 = individualParams[1].split("=");
+			
+			event.preventDefault();
+			//alert("fetch function is called");
+			var planModelFetch = new PlanModel({pid : 442,seid : 439});
+			planModelFetch.urlRoot = planModelFetch.urlRoot + 'pid='+param1[1]+'&seid='+param2[1]
+			planModelFetch.fetch({
+				success : function(cobrandDetails) {
+					//alert("Fetched Details : " + cobrandDetails)
+					//document.getElementById('back_button').style.display='';
+					$('#back_button').css('display','');
+					//var cobrand_html = "<span style='color:red'>" +  cobrandDetails.get('cobrandInfoBeanHash').snapfishuk.countBean.executed + "</span>"
+					var cobrand_html="<div id='displayCobrandwise' class='displaycobrandwise'><div class='table-heading'><ul><li class='col-1 heading'><b>Cobrand</b></li><li class='col-2 heading'><b>Browser</b></li><li class='col-3 heading'><b>Time taken</b></li><li class='col-4 heading'><b>Total Cases</b></li><li class='col-5 heading'><b>Executed</b></li><li class='col-6 heading green'><b>Passed</b></li><li class='col-7 heading red'><b>Failed</b></li></ul><div class='clear'></div></div><div class='cobrandDetails'><ul><li class='col-1'><a href='testCaseDetails?tpeidl=401&cobrand=snapfishuk'></a></li><li class='colspan-6'><div><ul class='repeatingcell clear'><li class='col-2' ><a href='testCaseDetails?tpeidl=401&cobrand=snapfishuk'>firefox</a></li><li class='col-3'>totalTime</li><li class='col-4'>totalCount</li><li class='col-5'>executed</li><li class='col-6'><font color=green>passedCount</font></li><li class='col-7'><font color=red>failedCount</font></li></ul><div class='clear'></div></div></li></ul><div class='clear'></div></div>"
+					var innerColumns = "";
+					for(i=0;i<cobrandDetails.get('cobrandInfoBeanHash').length;i++){
+						
+						var subelement="<div id='displayCobrandwise' class='displaycobrandwise'><div class='table-heading'><ul><li class='col-1 heading'><b>Cobrand</b></li><li class='col-2 heading'><b>Browser</b></li><li class='col-3 heading'><b>Time taken</b></li><li class='col-4 heading'><b>Total Cases</b></li><li class='col-5 heading'><b>Executed</b></li><li class='col-6 heading green'><b>Passed</b></li><li class='col-7 heading red'><b>Failed</b></li></ul><div class='clear'></div></div><div class='cobrandDetails'><ul><li class='col-1'><a href='testCaseDetails?tpeidl=401&cobrand=snapfishuk'></a></li><li class='colspan-6'><div><ul class='repeatingcell clear'><li class='col-2' ><a href='testCaseDetails?tpeidl=401&cobrand=snapfishuk'>firefox</a></li><li class='col-3'>totalTime</li><li class='col-4'>totalCount</li><li class='col-5'>executed</li><li class='col-6'><font color=green>passedCount</font></li><li class='col-7'><font color=red>failedCount</font></li></ul><div class='clear'></div></div></li></ul><div class='clear'></div></div>"
+								/*				opt.appendChild(document.createTextNode(key));*/
+						
+						
+						innerColumns = innerColumns + subelement; 
+					}
+					
+					$('#main').html(cobrand_html + innerColumns);
+				}
+			});
+		}
+	});
+
+	//create view obj
+	var suiteInfoView = new SuiteInfoView({
+		el : $("#main")
+	});
+
+	PlanModel = Backbone.Model.extend({
+		urlRoot : "/sqat_dashboard/displaycobrandWise?"
+	}); 
+</script>
+
+<!--
+
+<script type="text/javascript">
+$(function() {
+// Blog is the app name
+window.router = new Blog.Routers.SqatDashboardsRouter({param1: <%= @suiteInfoBean.to_json.html_safe -%>});
+Backbone.history.start();
+});
+</script>
+<div id="subdiv2">
+
+<p>
+<a href="http://localhost:3000/sqat_dashboard/displaycobrandWise/442/439"><b>Cobrand details</b></a>
+</p>
+
+<tr align="center" bgcolor="#FFFFFF">
+pid=<%= item.testPlanId%>
+&seid=<%= item.testSuiteExecutedId%>
+<td height="30"><%= link_to item.planName, :controller => "sqat_dashboard", :action =>"displaycobrandWise"%></u></b></a></td>
+
+-->
+

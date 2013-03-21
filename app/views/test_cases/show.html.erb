@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Testcase id pk:</b>
+  <%= @test_case.testCase_id_pk %>
+</p>
+
+<p>
+  <b>Case no:</b>
+  <%= @test_case.case_no %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @test_case.owner %>
+</p>
+
+<p>
+  <b>Case description:</b>
+  <%= @test_case.case_description %>
+</p>
+
+<p>
+  <b>Test suite:</b>
+  <%= @test_case.test_suite_id %>
+</p>
+
+<p>
+  <b>Test plan:</b>
+  <%= @test_case.test_plan_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_case_path(@test_case) %> |
+<%= link_to 'Back', test_cases_path %>

@@ -1,0 +1,69 @@
+<%= form_for(@test_suite_executed) do |f| %>
+  <% if @test_suite_executed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test_suite_executed.errors.count, "error") %> prohibited this test_suite_executed from being saved:</h2>
+
+      <ul>
+      <% @test_suite_executed.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :testsuite_executed_id %><br />
+    <%= f.number_field :testsuite_executed_id %>
+  </div>
+  <div class="field">
+    <%= f.label :jenkins_id %><br />
+    <%= f.text_field :jenkins_id %>
+  </div>
+  <div class="field">
+    <%= f.label :build_number %><br />
+    <%= f.text_field :build_number %>
+  </div>
+  <div class="field">
+    <%= f.label :build_paramL %><br />
+    <%= f.text_field :build_paramL %>
+  </div>
+  <div class="field">
+    <%= f.label :environment %><br />
+    <%= f.text_field :environment %>
+  </div>
+  <div class="field">
+    <%= f.label :release %><br />
+    <%= f.text_field :release %>
+  </div>
+  <div class="field">
+    <%= f.label :browser %><br />
+    <%= f.text_field :browser %>
+  </div>
+  <div class="field">
+    <%= f.label :executedBranch %><br />
+    <%= f.text_field :executedBranch %>
+  </div>
+  <div class="field">
+    <%= f.label :starttime %><br />
+    <%= f.date_select :starttime %>
+  </div>
+  <div class="field">
+    <%= f.label :endtime %><br />
+    <%= f.date_select :endtime %>
+  </div>
+  <div class="field">
+    <%= f.label :totaltime %><br />
+    <%= f.date_select :totaltime %>
+  </div>
+  <div class="field">
+    <%= f.label :servername %><br />
+    <%= f.text_field :servername %>
+  </div>
+  <div class="field">
+    <%= f.label :test_suite_id %><br />
+    <%= f.number_field :test_suite_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

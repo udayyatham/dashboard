@@ -1,0 +1,743 @@
+    1  clear
+    2  rails server
+    3  sudo gem install postgres
+    4  rake db:create:all
+    5  gem install activerecord-postgresql-adapter
+    6  sudo gem install activerecord-postgresql-adapter
+    7  rake db:create:all
+    8  cd ..
+    9  rails new testing
+   10  clear
+   11  cd testingh
+   12  cd testing
+   13  rails generate controller welcome index
+   14  sudo gedit test/functional/welcome_controller_test.rb 
+   15  rails server
+   16  rake create:db
+   17  bundle install
+   18  gem install postgres
+   19  sudo gem install postgres
+   20  bundle install
+   21  show pg
+   22  bundle show pg
+   23  bundle show posgtgres
+   24  bundle show postgres
+   25  bundle install
+   26  bundle show  pg
+   27  rails server  start
+   28  rails s
+   29  rails console
+   30  rails s
+   31  cd ..
+   32  rails new testpg --database=postgresql
+   33  cd testpg
+   34  ls
+   35  sudo rails generate controller welcome index
+   36  rails server
+   37  cd /var/lib/gems/1.9.1/gems/railties-3.2.9/lib/rails/application/
+   38  ls
+   39  sudo gedit configuration.rb 
+   40  sudo apt-get remove postgresql-8.4
+   41  sudo apt-get autoremove postgresql-8.4
+   42  sudo apt-get remove postgresql-8.4
+   43  sudo apt-get remove postgresql-9.1
+   44  sudo apt-get remove postgresql-common
+   45  sudo apt-get remove postgresql-client-common
+   46  clear
+   47  sudo apt-get --purge remove postgresql
+   48  dpkg -l | grep postgres
+   49  sudo apt-get --purge remove postgresql-8.4 postgresql-9.1 postgresql-client-common postgresql-common
+   50  sudo rm -rf /var/lib/postgresql/
+   51  sudo rm -rf /var/log/postgresql/
+   52  sudo rm -rf /etc/postgresql/
+   53  clear
+   54  sudo apt-get install postgresql libpq
+   55  sudo apt-get install python-software-properties
+   56  sudo add-apt-repository ppa:pitti/postgresql
+   57  sudo apt-get update
+   58  sudo apt-get install postgresql
+   59  locate postgresql
+   60  psql -V
+   61  su postgres
+   62  sudo su postgres
+   63  sudo /etc/init.d/postgresql restart
+   64  clear
+   65  exit
+   66  cd railsProject/
+   67  rails new testpostgres -d postgresql
+   68  sudo rails new testpostgres -d postgresql
+   69  rails g controller welcome index test
+   70  rails generate controller welcome index test
+   71  sudo rails generate controller welcome index
+   72  cd testpostgres/
+   73  sudo rails generate controller welcome index
+   74  sudo rails generate controller welcome test
+   75  cd ..
+   76  cd ~/railsProject/
+   77  rails new blogpostgres -d postgresql
+   78  clear
+   79  cd blogpostgres/
+   80  rails g controller welcome index test
+   81  clear
+   82  rails server
+   83  clear
+   84  rails server
+   85  rake migratedb
+   86  cd config/
+   87  cat database.yml 
+   88  rake db:create:all
+   89  railsdb
+   90  rails db
+   91  clear
+   92  rails server
+   93  clear
+   94  cd ..
+   95  cd ~/railsProject/
+   96  clear
+   97  cd blog/
+   98  ls
+   99  rails server
+  100  sudo grep psql
+  101  sudo grep postgres
+  102  dpkg -L postgres
+  103  dpkg -L postgres-9.1
+  104  sudo /etc/init.d/postgresql start
+  105  clear
+  106  rails server
+  107  clear
+  108  bundle install
+  109  rails server
+  110  rails db
+  111  clear
+  112  rails s
+  113  rails db
+  114  rails s
+  115  clear
+  116  rails s
+  117  rails generate model Post title:string text:text
+  118  rails g controller testcurd new
+  119  rails s
+  120  rails generate model student  title:string text:text
+  121  psql -h localhost sqatdb sqat
+  122  sudo /etc/init.d/postgresql restart 
+  123  clear
+  124  plsql -h localhost postgres
+  125  psql -h localhost postgres
+  126  sudo gedit /etc/postgresql/9.1/main/postgresql.conf
+  127  sudo /etc/init.d/ 
+  128  sudo /etc/init.d/postgresql restart 
+  129  sudo -u postgres psql
+  130  psql -h localhost blogpostgres_test blogpostgres
+  131  psql -h localhost blogpostgres_development blogpostgres
+  132  psql -h localhost blog-dev blog
+  133  psql -h localhost blog_dev blog
+  134  clear
+  135  mkdir railsWorkingProject
+  136  cd railsWorkingProject/
+  137  rails new SQAT_DASH -d postgresql
+  138  clear
+  139  cd SQAT_DASH/
+  140  rails g controller TestSuite showtestsuite
+  141  rails server
+  142  clear
+  143  rails g model test_suite testsuite_id_pk:integer suite_name :text suite_xml_file:text teamname:text suite_description:text
+  144  cat db/migrate/20121228121331_create_test_suites.rb 
+  145  sudo rm db/migrate/20121228121331_create_test_suites.rb 
+  146  rails g model test_suite testsuite_id_pk:integer suite_name:text suite_xml_file:text teamname:text suite_description:text
+  147  cat db/migrate/20121228121331_create_test_suites.rb 
+  148  cd db
+  149  ls
+  150  cd migrate/
+  151  ls
+  152  cat 20121228121522_create_test_suites.rb 
+  153  cd ..
+  154  rails db
+  155  rails s
+  156  rails db
+  157  rails s
+  158  ifconfig
+  159  ls
+  160  cd railsWorkingProject/
+  161  ls
+  162  cd SQAT_DASH/
+  163  ls
+  164  rails server
+  165  clear
+  166  cd ..
+  167  cd railsProject/
+  168  ls
+  169  cd blog/
+  170  ls
+  171  rails generate controller jorney today
+  172  rails generate model jorney_today index:integer
+  173  clear
+  174  cd ..
+  175  clear
+  176  rails new DemoProject 
+  177  clear
+  178  ls
+  179  cd DemoProject/
+  180  ls
+  181  rails generate controller Demo hello
+  182  rails s
+  183  clear
+  184  exit
+  185  ruby -v
+  186  rails -v
+  187  exit
+  188  psql -h localhost blog_dev blog
+  189  psql -h localhost postgres
+  190  sudo apt-get --purge remove postgresql
+  191  dpkg -l | grep postgres
+  192  sudo apt-get --purge remove postgresql-9.1 postgresql-client-9.1 postgresql-common postgresql-client-common
+  193  exit
+  194  cd ~
+  195  clear
+  196  exit
+  197  psql -h localhost testdb seshanka
+  198  psql -h localhost postgres
+  199  psql -h localhost testdb seshanka
+  200  cd /etc/postgresql/9.1/main/
+  201  ls
+  202  sudo gedit pg_hba.conf
+  203  /etc/init.d/postgresql-8.9.1 restart
+  204  /etc/init.d/postgresql-9.1 restart
+  205  /etc/init.d/postgresql restart
+  206  sudo /etc/init.d/postgresql restart
+  207  sudo gedit pg_hba.conf
+  208  sudo /etc/init.d/postgresql restart
+  209  clear
+  210  sudo gedit pg_hba.conf
+  211  sudo /etc/init.d/postgresql restart
+  212  exit
+  213  java -v
+  214  java -version
+  215  exit
+  216  cd ROR/
+  217  ls
+  218  pscp -r * samba@172.20.105.132:/home/samba/samba-bak/personal/Tutorials/
+  219  cd ..
+  220  scp -r ROR/ samba@172.20.105.132:/home/samba/samba-bak/personal/Tutorials/
+  221  exit
+  222  ssh samba@dt-crop-sfd-samba
+  223  ssh samba@172.20.105.132
+  224  exit
+  225  sudo rm -rf /var/lib/postgresql/
+  226  sudo rm -rf /var/log/postgresql/
+  227  sudo rm -rf /etc/postgresql/
+  228  clear
+  229  sudo apt-get install python-software-properties
+  230  sudo add-apt-repository ppa:pitti/postgresql
+  231  sudo apt-get update
+  232  sudo apt-get install postgresql
+  233  sudo apt-get install postgresql-9.1 libpq-dev
+  234  locate postgresql
+  235  psql -V
+  236  su postgres
+  237  psql -h localhost postgres
+  238  su postgres
+  239  cd cd /etc/postgresql/9.1/main
+  240  cd /etc/postgresql/9.1/main
+  241  ls -la
+  242  cp pg_hba.conf pg_hba.conf.bak.original
+  243  sudo cp pg_hba.conf pg_hba.conf.bak.original
+  244  sudo  cp postgresql.conf postgresql.conf.bak.original
+  245  clear
+  246  sudo gedit pg_hba.conf
+  247  sudo /etc/init.d/postgresql restart
+  248  clear
+  249  sudo gedit postgresql.conf
+  250  sudo /etc/init.d/postgresql restart
+  251  clear
+  252  sudo -u postgres createuser
+  253  clear
+  254  sudo -u postgres psql template1
+  255  clear
+  256  sudo -u postgres psql postgres
+  257  exit
+  258  cd /home/valuelabs/Videos/apache-tomcat-7.0.33/bin
+  259  sh startup.sh 
+  260  exit
+  261  sudo apt-get install Maven3
+  262  sudo apt-get install maven3 //tdert ka
+  263  sudo apt-get install maven3
+  264  mvn --version
+  265  udo add-apt-repository ppa:natecarlson/maven3
+  266  sudo add-apt-repository ppa:natecarlson/maven3
+  267  sudo apt-get update && sudo apt-get install maven3
+  268  mvn --version
+  269  sudo ln -s /usr/bin/mvn3 /usr/bin/mvn
+  270  mvn --version
+  271  cd ~
+  272  clear
+  273  mvn --version
+  274  clear
+  275  mkdir mvn
+  276  clear
+  277  cd mvn
+  278  clear
+  279  mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+  280  ls
+  281  clear
+  282  ls
+  283  cd my-app/
+  284  ls
+  285  clear
+  286  cat pom.xml
+  287  cd src/
+  288  ls
+  289  cd main
+  290  ls
+  291  cd java
+  292  ls
+  293  cd com
+  294  ls
+  295  cd mycompany/
+  296  ls
+  297  cd app/
+  298  ls
+  299  cat App.java
+  300  cd ~/mvn/my-app/src/test/java/com/mycompany/app/
+  301  ls
+  302  cat AppTest.java 
+  303  sudo gedit AppTest.java 
+  304  clear
+  305  cd ~/mvn/my-app/src/main/java/com/mycompany/app/
+  306  clear\
+  307  clear
+  308  mvn package
+  309  cd ~/mvn/my-app/
+  310  mvn package
+  311  java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+  312  mvn test
+  313  mvn compile
+  314  cd /src
+  315  ls
+  316  cd ..
+  317  cd ~/mvn
+  318  ls
+  319  cd my-app/
+  320  ls
+  321  cd src/
+  322  ls
+  323  cd main/
+  324  ls
+  325  cd java/
+  326  ls
+  327  cd com/
+  328  ls
+  329  cd mycompany/
+  330  ls
+  331  cd app/
+  332  ls
+  333  cd ~/mvn
+  334  ls
+  335  cd my-app/
+  336  ls
+  337  cd target/classes/
+  338  ls
+  339  cd com/mycompany/app/
+  340  ls
+  341  cd ~/mvn/my-app/target/
+  342  ls
+  343  cd surefire-reports/
+  344  ls
+  345  cat com.mycompany.app.AppTest.txt 
+  346  cat TEST-com.mycompany.app.AppTest.xml 
+  347  clear
+  348  cd ..
+  349  ls
+  350  cd maven-archiver/
+  351  ls
+  352  cat pom.properties 
+  353  cd ..
+  354  cd surefire
+  355  ls
+  356  cd ..
+  357  cd test-classes/
+  358  ls
+  359  cd com/mycompany/app/
+  360  ls
+  361  cd ..
+  362  cd ~/mvn
+  363  ls
+  364  cd my-app/
+  365  ls
+  366  clear
+  367  cd ..
+  368  clear
+  369  mvn archetype:generate -DgroupId=com.snapfish.qa -DartifactId=TestMaven -DarchetypeArtifactId=maven-archetype-quickstart -DinertactiveMode=false
+  370  clear
+  371  mvn archetype:generate -DgroupId=com.snapfish.qa -DartifactId=TestMaven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=true
+  372  clear
+  373  mvn archetype:generate -DgroupId=com.snapfish.qa -DartifactId=TestMaven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=true > output2project.txt
+  374  clear
+  375  mvn archetype:generate -DgroupId=com.snapfish.qa -DartifactId=TestMaven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false > output2project.txt
+  376  clear
+  377  mvn archetype:generate -DgroupId=com.snapfish.qa -DartifactId=TestMaven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+  378  cd TestMaven/
+  379  ls
+  380  cd src/main/java/com/snapfish/qa/
+  381  ls
+  382  cat App.java 
+  383  cd ..
+  384  cd ~/mvn/TestMaven/
+  385  ls
+  386  mvn compile
+  387  lsLS
+  388  LS
+  389  ls
+  390  clear
+  391  cd target/
+  392  ls
+  393  cd classes/
+  394  ls
+  395  cd com/snapfish/qa/
+  396  ls
+  397  cd ~/mvn/TestMaven/
+  398  clear
+  399  mvn validate
+  400  generate-sources
+  401  mvn generate-sources
+  402  cd target/
+  403  ls
+  404  cd ..
+  405  mvn process-sources
+  406  mvn process-resources
+  407  cd /src
+  408  ls
+  409  cd ~/mvn/TestMaven/
+  410  ls
+  411  cd src/main/
+  412  ls
+  413  cd ..
+  414  mvn compile
+  415  clear
+  416  java   com.snapfish.qa.App
+  417  java   -cp target/classes/ com.snapfish.qa.App
+  418  mvn package
+  419  clear
+  420  java -cp target/TestMaven-1.0-SNAPSHOT.jar  
+  421  java -cp target/TestMaven-1.0-SNAPSHOT.jar  com.snapfish.qa.App
+  422  clear
+  423  exit
+  424  cd railsProject/
+  425  ls
+  426  cd DemoProject/
+  427  clear
+  428  rails s
+  429  cd..
+  430  cd ..
+  431  clear
+  432  sudo rails new DemoDB -d postgresql
+  433  rails s
+  434  cd blog/
+  435  rails s
+  436  cd ..
+  437  cd DemoProject/
+  438  rails s
+  439  exit
+  440  ruby -v
+  441  exit
+  442  cat /etc/apt/apt.conf
+  443  exit
+  444  sudo gedit /etc/apt/apt.conf
+  445  cat /etc/apt/apt.conf
+  446  exit
+  447  touch book.rb
+  448  touch library.rb
+  449  mkdir spec
+  450  touch spec/book_spec.rb
+  451  spec/book_spec.rb spec/library_spec.rb spec/spec_helper.rb
+  452  touch spec/book_spec.rb spec/library_spec.rb spec/spec_helper.rb
+  453  clear
+  454  cd spec/ ls-a
+  455  ls-a
+  456  ls 
+  457  clear
+  458  tree
+  459  sudo apt-get install tree
+  460  clear
+  461  tree
+  462  open .
+  463  .
+  464  open .
+  465  nautilus
+  466  gnome open .
+  467  gnome-open .
+  468  nautilus .
+  469  xdg-open .
+  470  exit
+  471  ruby
+  472  sudo gedit test.rb
+  473  ruby test.rb
+  474  sudo gedit test.rb
+  475  ruby test.rb
+  476  sudo gedit test.rb
+  477  ruby test.rb
+  478  sudo gedit test.rb
+  479  mkdir ruby
+  480  cp test.rb ruby
+  481  cd ruby
+  482  ls
+  483  clear
+  484  cd ..
+  485  cd venkat.pisupate_valuelabs_9458/venkat.pisupate_valuelabs_9458/depot/sqat/Integration/sqat-framework/
+  486  clear
+  487  ant clean
+  488  ant
+  489  ant build
+  490  ant buildComponents 
+  491  ant runnableJars 
+  492  cd ../../Regression/
+  493  cd sqat-framework/
+  494  ant clean
+  495  ant 
+  496  ant buildComponents 
+  497  ant runnableJars 
+  498  clear
+  499  exit
+  500  ssh op1-qaserv6
+  501  clear
+  502  ssh op1-qaserv6
+  503  sudo ssh op1-qaserv6
+  504  clear
+  505  sudo ssh op1-qaserv2
+  506  ssh op1-qaserv1
+  507  ssh vseshanka@74.122.84.7
+  508  ssh op1-qaserv1
+  509  ssh vseshanka@74.122.84.7
+  510  scp gcc-3.4.6-3.1.i386.rpm vseshanka@op1-qaserv6
+  511  clear
+  512  ssh op1-qaserv6
+  513  ssh vseshanka@74.122.84.7
+  514  clear
+  515  cd venkat.pisupate_valuelabs_9458/venkat.pisupate_valuelabs_9458/depot/sqat/Integration/sqat-framework/
+  516  clear
+  517  ant 
+  518  clear
+  519  ant run -Dtest_suit=secret.xml -DsysConfig=localconfig.properties  -Dplan=test   -Dno=1
+  520  clear
+  521  ant run -Dtest_suit=secret.xml -DsysConfig=localconfig.properties  -Dplan=test   -Dno=1
+  522  exit
+  523  ifcofig
+  524  ifconfig
+  525  pwd
+  526  exit
+  527  cd ~
+  528  clear
+  529  java -jar selenium-server-standalone-2.25.0.jar -timeout 3600
+  530  clear
+  531  exit
+  532  ruby -v
+  533  clear
+  534  exit
+  535  gem install redcar
+  536  sudo gem install redcar
+  537  edcar --help
+  538  redcar --help
+  539  cd ~/Downloads/pdfs/book-of-ruby/
+  540  ls
+  541  cd ch1
+  542  clear
+  543  redcar *.rb
+  544  clear
+  545  cd ..
+  546  cd ch2
+  547  ls
+  548  clear
+  549  redcar *.rb
+  550  cd ../ch3
+  551  cdredcar *.rb
+  552  dredcar *.rb
+  553  redcar *.rb
+  554  clear
+  555  ls
+  556  cd ../..
+  557  cd book-of-ruby/
+  558  clear
+  559  ls
+  560  clear
+  561  pdf bookofruby.pdf 
+  562  .
+  563  clear
+  564  cd ~
+  565  clear
+  566  ls
+  567  cd railsWorkingProject/
+  568  ls
+  569  clear
+  570  cd SQAT_DASH/
+  571  ls
+  572  cd config/
+  573  ls
+  574  cat database.yml 
+  575  clear
+  576  cd ..
+  577  clear
+  578  rails new Sample -d postgres
+  579  rails new Sample -d postgresql
+  580  sudo -u postgres createdb sample_test
+  581  sudo -u postgres psql
+  582  sudo /etc/init.d/postgresql restart
+  583  clear
+  584  sudo -u postgres createuser
+  585  sudo -u postgres createdb sample
+  586  sudo -u postgres psql
+  587  clear
+  588  psql -h localhost sample sample
+  589  sudo -u postgres psql
+  590  psql -h localhost sample sample
+  591  cd sample
+  592  ls
+  593  cd S
+  594  cd Sample/
+  595  clear
+  596  rails generate controller books
+  597  cd app/controllers/
+  598  ls
+  599  cd ../..
+  600  clear
+  601  rails db
+  602  psql -h localhost sample Sample
+  603  psql -h localhost sample Sample
+  604  clear
+  605  rails db
+  606  clear
+  607  rails server
+  608  clear
+  609  rails server
+  610  clear
+  611  rails server
+  612  sudo bundle install
+  613  rails generate rspec:install
+  614  ls
+  615  rails s
+  616  rails generate controller StaticPages home help --no-test-framework
+  617  rails s
+  618  top -h
+  619  ps
+  620  man top
+  621  top
+  622  cd railsWorkingProject/
+  623  cd Sample/
+  624  clear
+  625  rails s
+  626  ssh op1-qaserv2
+  627  clear
+  628  sudo /etc/init.d/postgresql restart 
+  629  clear
+  630  cd railsWorkingProject/
+  631  ls
+  632  rails new ProjectTestDrivenDevelopment 
+  633  clear
+  634  ls
+  635  cd ProjectTestDrivenDevelopment/
+  636  LS
+  637  ls
+  638  rm test
+  639  rmdir test
+  640  rmdir -r test
+  641  cd test/
+  642  ls
+  643  cd ..
+  644  ls
+  645  rails generate controller StaticPages home help --no-test-framework
+  646  rails s
+  647  rails generate integration_test static_pages
+  648  ls
+  649  sudo bundle install
+  650  rails generate integration_test static_pages
+  651  ls
+  652  cd spec/requests/
+  653  ls
+  654  sudo gedit static_pages_spec.rb 
+  655  clear
+  656  rspec spec
+  657  clear
+  658  cd ..
+  659  cd ~/railsWorkingProject/
+  660  ls
+  661  cd Sample
+  662  ls
+  663  cd spec/
+  664  ls
+  665  cat spec_helper.rb 
+  666  rails generate integration_test static_pages
+  667  clear
+  668  bundle exec rspec spec/requests/static_pages_spec.rb
+  669  cd Sample
+  670  cd ..
+  671  ls
+  672  bundle exec rspec spec/requests/static_pages_spec.rb
+  673  cd ..
+  674  cd ProjectTestDrivenDevelopment/
+  675  bundle exec rspec spec/requests/static_pages_spec.rb
+  676  sudo bundle install
+  677  clear
+  678  bundle exec rspec spec/requests/static_pages_spec.rb
+  679  clear
+  680  bundle exec rspec spec/requests/static_pages_spec.rb
+  681  clear
+  682  rails g controller test index
+  683  rails generate integration_test  test
+  684  bundle exec rspec spec/requests/
+  685  bundle exec rspec spec/requests/tests_spec.rb
+  686  bundle exec rspec spec/controllers/test_controller_spec.rb 
+  687  bundle exec rspec spec/helpers/test_helper_spec.rb 
+  688  ls
+  689  cd spec
+  690  ls
+  691  cd ..
+  692  bundle exec rspec spec/requests/tests_spec.rb
+  693  bundle exec rspec spec/requests/static_pages_spec.rb
+  694  mv app/views/layouts/application.html.erb foobar 
+  695  ls
+  696  cd app
+  697  ls
+  698  cd view
+  699  cd views
+  700  ls
+  701  cd layouts/
+  702  ls
+  703  l
+  704  clear
+  705  cd ../..
+  706  cd ..
+  707  clear
+  708  bundle exec spec/requests/
+  709  bundle exec spec/requests/static_pages_spec.rb
+  710  bundle exec rspec spec/requests/static_pages_spec.rb
+  711  clear
+  712  bundle exec rspec spec/requests/static_pages_spec.rb
+  713  clear
+  714  bundle exec rspec spec/requests/static_pages_spec.rb
+  715  clear
+  716  bundle exec rspec spec/requests/static_pages_spec.rb\
+  717  bundle exec rspec spec/requests/static_pages_spec.rb
+  718  bundle exec rspec spec/requests/static_pages_spec.rb --format nested
+  719  rvm get head && rvm reload
+  720  sudo rvm get head && rvm reload
+  721  rvm -v
+  722  ruby -v
+  723  bundle exec rspec spec/requests/static_pages_spec.rb --format nested
+  724  rspec spec/requests/static_pages_spec.rb --format nested
+  725  sudo bundle install
+  726  bundle exec rspec spec/requests/static_pages_spec.rb --format nested
+  727  chmod +x $rvm_path/hooks/after_cd_bundler
+  728  source /usr/local/rvm/scripts/rvm
+  729  sudo apt-get --purge remove ruby-rvm
+  730  sudo rm -rf /usr/share/ruby-rvm /etc/rvmrc /etc/profile.d/rvm.sh
+  731  bundle exec rspec spec/requests/static_pages_spec.rb --format nested
+  732  sudo bundle install
+  733  bundle exec rspec spec/requests/static_pages_spec.rb --format nested
+  734  cd ..
+  735  rvm -v
+  736  ruby -v
+  737  rails -v
+  738  source /usr/local/rvm/scripts/rvm
+  739  env | grep rvm
+  740  curl -L get.rvm.io | bash -s -- --auto-dotfiles
+  741  source /usr/local/rvm/scripts/rvm
+  742  bundle exec rspec spec/requests/static_pages_spec.rb
+  743  history > output_history.txt

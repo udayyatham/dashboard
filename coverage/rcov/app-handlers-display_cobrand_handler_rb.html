@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/handlers/display_cobrand_handler.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Sqat dashboard C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/handlers/display_cobrand_handler.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-handlers-display_cobrand_handler_rb.html">app/handlers/display_cobrand_handler.rb</a></td>
+            <td class='right_align'><tt>108</tt></td>
+            <td class='right_align'><tt>60</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>60.19%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:60px"></div>
+        <div class="uncovered" style="width:40px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>28.33%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:28px"></div>
+        <div class="uncovered" style="width:72px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> require_relative '../beans/time_bean'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line3">3</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a> require_relative '../beans/count_info_bean'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a> require_relative '../beans/test_suites_bean'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a> require_relative '../beans/test_plans_bean'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a> require_relative '../beans/cobrand_info_bean'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a> require_relative '../beans/browser_info_bean'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a> require_relative '../beans/plans_wise_cobrands_info_bean'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a> require_relative '../dao/test_suite_details_db'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a> require_relative '../dao/test_plan_details_db'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a> require_relative '../dao/test_case_details_db'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a> require_relative '../utils/handler_utils/'</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a> class DisplayCobrandHandler</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   @@displayCobrandHandler=DisplayCobrandHandler.new();</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>   #provide only single object of DisplayCobrandHandler</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   def self.getDisplayCobrandHandler</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line21">21</a>     return @@displayCobrandHandler</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>   #returns Cobrand Plans wise cobrands Information in a bean</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   def getBrowserWiseCobrandInfo(suiteExecutionId,planId)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line26">26</a>     Rails.logger.info(&quot;getBrowserWiseCobrandInfo :: suiteExecutionId #{suiteExecutionId} , planId #{planId}&quot;)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line27">27</a>     cobrandsHash=Hash.new;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a>     #get testplanExecutedId's list for getting cobrands wise information</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line29">29</a>     testplanExecutedList=TestPlanDetailsDb.new.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>     getTestPlanExecutedList(suiteExecutionId,planId)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line31">31</a>     testplanExecutedList ||= raise &quot;testplanExecutionList is Empty&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line32">32</a>     cobrandsHash=Hash.new;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line33">33</a>     tpExecutedListForCobrand=Array.new</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line34">34</a>     Rails.logger.info(&quot;testplanExecutedList #{testplanExecutedList.length}&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a>     #iterate the list and retrieve cobrands for each</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line36">36</a>     testplanExecutedList.each do |testplanExecutedObj|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line37">37</a>       @environment=testplanExecutedObj.environment</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line38">38</a>       @release=testplanExecutedObj.release</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line39">39</a>       testplanExecutedObj||=raise &quot;Expecting testplanExecuted Object&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line40">40</a>       Rails.logger.info(&quot;testplanExecutedObj's testplan_executed_id :: #{testplanExecutedObj.testplan_executed_id} &quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>       #list of testplanExecutedIds stored for cobrandLink to be appended for query string</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line43">43</a>       tpExecutedListForCobrand.push(testplanExecutedObj.testplan_executed_id);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line44">44</a>       Rails.logger.info(&quot;testplanExecutedId:#{testplanExecutedObj.testplan_executed_id}&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>       #get browserInfo</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line47">47</a>       browserInfobean=getBrowserInfoBean(testplanExecutedObj.starttime,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>       testplanExecutedObj.endtime,testplanExecutedObj.totaltime,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>       testplanExecutedObj.browser,testplanExecutedObj.testplan_executed_id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>       testplanExecutedObj.windows_host);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line52">52</a>       browserInfobean ||=raise &quot;Expecting browserInfobean&quot;;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>       # @cobrandInfoBeanList is iterated to display cobrand Name and its browserList.</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line55">55</a>       getCobrandInfoBeanHash(testplanExecutedObj.testplan_executed_id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>                                                   suiteExecutionId,browserInfobean,cobrandsHash);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line58">58</a>     suiteName=TestSuiteDetailsDb.new.getSuiteName(suiteExecutionId)[0].suite_name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a>     #to be displayed</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line60">60</a>     plansWiseCobrandsInfoBeanObj=PlansWiseCobrandsInfoBean.new(cobrandsHash,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>     tpExecutedListForCobrand,@environment,@release,suiteName);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>   #returns cobrandInfoBeanHash containing cobrandName and browserList for each testplanExecutedId provided</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line66">66</a>   def getCobrandInfoBeanHash(testplanExecutedId,suiteExecutionId,browserInfobean,cobrandsHash)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line67">67</a>     Rails.logger.info(&quot;In getCobrandInfoBeanHash suiteExecutionId:#{suiteExecutionId}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a>     testplanExecutedId : #{testplanExecutedId}&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>     #getCobrands List</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line70">70</a>     cobrandNameList=TestCaseDetailsDb.new.getCobrands(testplanExecutedId,suiteExecutionId);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line72">72</a>     if cobrandNameList then</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line73">73</a>       Rails.logger.info(&quot;cobrandNameList : #{cobrandNameList}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line74">74</a>       cobrandNameList.each do |testCaseExecuted|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line75">75</a>         cobrandName=testCaseExecuted.cobrand</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line76">76</a>         Rails.logger.info(&quot;cobrand of cobrandNameList  : #{cobrandName}&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>         #if key doesnt exist ,then add directly</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line78">78</a>         value=cobrandsHash.fetch(cobrandName,nil);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line79">79</a>         if !(value) then</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line80">80</a>           Rails.logger.info(&quot;cobrand to be added : #{cobrandName}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line81">81</a>           cobrandInfoBean=CobrandInfoBean.new(cobrandName,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>           HandlerUtils.getCountInfoBeanCobrandWise(testplanExecutedId,cobrandName));</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line83">83</a>           cobrandInfoBean.browserInfoBeanList.push(browserInfobean);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a>           #push into hash</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line85">85</a>           cobrandsHash.store(cobrandName,cobrandInfoBean);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line86">86</a>           Rails.logger.info(&quot;#{cobrandName} stored , with its value #{cobrandsHash.inspect}&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>         else</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>         # Every, testplanExecutionId : browser-wise, will not have double entry of cobrands</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line89">89</a>           Rails.logger.info(&quot;cobrand already exists : #{cobrandName}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line90">90</a>         value.browserInfoBeanList.push(browserInfobean);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line94">94</a>     Rails.logger.info(&quot;cobrand Hash : #{cobrandsHash}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line95">95</a>     return cobrandsHash</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>   # returns browserInfoBean</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line99">99</a>   def getBrowserInfoBean(starttime,endtime,totaltime,browser,testPlanExecutedId,windowsHost)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line100">100</a>     timeBeanObj=TimeBean.new(starttime,endtime,totaltime);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line101">101</a>     Rails.logger.info(&quot;timeBeanObj created : #{timeBeanObj}&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>     #browser Info bean to be created</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line103">103</a>     browserInfobean=BrowserInfoBean.new( browser,testPlanExecutedId,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>     windowsHost,timeBeanObj);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line105">105</a>     Rails.logger.info(&quot;browserInfobean created : #{browserInfobean}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line106">106</a>     return browserInfobean</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2013-03-07 09:57:17 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

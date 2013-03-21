@@ -1,0 +1,38 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#leftContainer{
+    float: left;
+    width:20%;
+    background-color: green;
+}
+#rightContainer{
+  float:right;
+  width:80%;
+  background-color: orange;
+
+}
+#testSuiteDescriptionContainer{
+   table, tr, td, p, a, span {
+   font-weight:normal;
+   color:#000;
+   font-family:Arial,Helvetica,Verdana,Sans-serif;
+   font-size:12px;
+   text-decoration:none;
+}
+}
+#testSuiteInfoContainer{
+  background-color: red;
+  float:left;
+  width:49.8%;
+  border: 1px solid #ccc;
+  text-align:center;
+}
+#testSuitePieChartContainer{
+  background-color: yellow;
+  float:right;
+  width:49.8%;
+  border: 1px solid #ccc;
+  text-align:center;        
+}
+

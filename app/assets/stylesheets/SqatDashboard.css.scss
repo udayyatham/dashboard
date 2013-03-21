@@ -1,0 +1,62 @@
+    div,table, tr, td, p, a, span {
+        font-weight: normal;
+        color: #000;
+        font-family: Arial, Helvetica, Verdana, Sans-serif;
+        font-size: 14px;
+    }
+    .clear{
+        clear: both;
+    }
+     .heading{
+        color :#FFFFFF;
+    }
+    .displaycobrandwise ul{
+        padding:0;margin:0;
+        list-style: none;
+    }
+    .displaycobrandwise .infobar{
+        color: green;
+        width:720px;
+    }
+    .displaycobrandwise #environment{
+        float: left;
+    }
+    .displaycobrandwise #release{
+        float: right;
+    }
+   .table-heading ul li{
+        background-color: #000000;
+    }
+   .table-heading ul li,
+   .cobrandDetails ul li,
+   .cobrandDetails ul li.colspan-6 ul li.col-1{
+        float:left;
+        display:block;
+        border: 1px solid red;
+        width:100px;
+    }
+    .table-heading ul,
+    .cobrandDetails ul{
+        width:720px; 
+    }
+    .cobrandDetails ul li.colspan-6,
+    .cobrandDetails ul li.colspan-6 ul{
+        width:612px;
+    }
+    .cobrandDetails ul li.col-1{
+        width:98px;
+    }
+    .table-heading ul li.green{
+        background-color: #008000;
+    }
+    .table-heading ul li.red{
+        background-color: #FF0000;
+    }
+    .repeatingcell{
+        
+        list-style: none;
+        
+        display: block;
+        
+        border: 1px solid black;
+    }

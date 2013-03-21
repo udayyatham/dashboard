@@ -1,0 +1,4 @@
+module SqatDashboardHelper
+
+  
+end

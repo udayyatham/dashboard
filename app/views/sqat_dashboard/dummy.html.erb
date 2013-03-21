@@ -1,0 +1,149 @@
+<style type="text/css">
+    div, table, tr, td, p, a, span {
+        font-weight: normal;
+        color: #000;
+        font-family: Arial, Helvetica, Verdana, Sans-serif;
+        font-size: 12px;
+        text-decoration: none;
+    }
+</style>
+<br/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+<script type="text/javascript">
+var teamWiseSuitesHash =<%= @teamWiseSuitesHash.to_json.html_safe%>
+    ;
+    for (var i in teamWiseSuitesHash) {
+        // document.write(i + ' :::: ' + teamWiseSuitesHash[i]);
+        var suites = teamWiseSuitesHash[i];
+        //document.write('<br/>');
+        //document.write('suites array ' + suites);
+
+    }
+
+    model = new Backbone.Model({
+        data : teamWiseSuitesHash
+    });
+
+    var TeamsList = Backbone.View.extend({
+    initialize : function() {
+    this.teamsTemplate = $('#teamNames').children();
+    },
+    el : '#teamNames',
+    events : {
+    "change .select-team" : function() {
+            var data = this.model.get('data');
+            var selectedValue = $(this).val();
+                $('.select-group2').empty();
+                $("<option></option>", {value: 0, text: "Please select an option"}).appendTo('.select-group2');
+                console.log("selected value"+selectedValue);
+                $.each(data,function(key,value){
+                        console.log("key : "+key+"value : "+value);
+                        if(selectedValue == key){
+                            var splitValues = value.split(",");
+                            console.log(splitValues);
+                            for(i = 0;i<splitValues.length;i++){
+                                $("<option></option>", {value: splitValues[i], text: splitValues[i]}).appendTo('.select-group2');
+                            }
+    
+                        }
+                });
+        }
+    },
+    render : function() {
+            var data = this.model.get('data');
+                for (var key in data) {
+                        $.each(data,function(key,value){
+                                console.log("key : "+key+"value : "+value);
+                                    $("<option></option>", {value: key, text: key}).appendTo('.select-group1');
+                                     });
+                     }
+        }
+
+    });
+
+    var view = new TeamsList({
+        model : model
+    });
+    view.render(); 
+</script>
+<br/>
+<br/>
+<br/>
+<br /></div>
+<br/>
+TeamWiseSuitesHash:container
+<%= @teamWiseSuitesHash.to_json%>--##
+------------------------------
+
+
+    <div id="teamNames">
+        <select name="groupid" style="width:100%;" class="select-team">
+            <option value="0" selected>(Please select an option)</option>
+    </div>
+
+    <div id="suiteNames">
+        <select name="select-suite" style="width:100%;" class="select-suite">
+            <option value="0" selected>(Please select an option)</option>
+    </div>
+
+<table width="100%" border="0" cellpadding="4" cellspacing="1" bordercolor="#CCCCCC" bgcolor="#CCCCCC">
+    <tr bgcolor="#FFFFFF">
+        <td width="20%">TestSuite: </td>
+        <td width="80%"><%= @suiteInfoBean.suiteName%> </td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Environment: </td>
+        <td><%= @suiteInfoBean.environment %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Build Number: </td>
+        <td><%= @suiteInfoBean.buildNumber %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Automation Server: </td>
+        <td><%= @suiteInfoBean.automationServer %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Start Time: </td>
+        <td><%= @suiteInfoBean.timeBean.startTime %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>End Time: </td>
+        <td><%= @suiteInfoBean.timeBean.endTime %></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td>Total Time: </td>
+        <td><%= @suiteInfoBean.timeBean.totalTime %> minutes </td>
+    </tr>
+</table>
+<br/>
+<br/>
+
+<table width="100%" bordertestPlan_executed_id="0" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
+    <tr>
+        <td>
+        <table width="100%" border="0" cellspacing="1" cellpadding="1">
+            <tr align="center">
+                <td width="20%" height="30" bgcolor="#333333"><b><font color="#FFFFFF">Plan Names</font></b></td>
+                <td width="20%" bgcolor="#333333"><b><font color="#FFFFFF">Owner Name</font></b></td>
+                <td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Total Cases</font></b></td>
+                <td width="15%" bgcolor="#333333"><b><font color="#FFFFFF">Executed</font></b></td>
+                <td width="15%" bgcolor="#669933"><b><font color="#FFFFFF">Passed</font></b></td>
+                <td width="15%" bgcolor="#FF3300"><b><font color="#FFFFFF">Failed</font></b></td>
+            </tr>
+            <%for item in @suiteInfoBean.testPlanBeanlist%>
+            <tr align="center" bgcolor="#FFFFFF">
+                <td height="30"><a href="displaycobrandWise?pid=<%= item.testPlanId%>
+                &seid=<%= item.testSuiteExecutedId%>"><b><u><%= item.planName%></u></b></a></td>
+                <td><%= item.owner%></td>
+                <td><%= item.countBean.totalCount%></td>
+                <td><%= item.countBean.executed%></td>
+                <td><%= item.countBean.passedCount%></td>
+                <td><%= item.countBean.failedCount%></td>
+            </tr>
+            <%end%>
+        </table></td>
+    </tr>
+</table>

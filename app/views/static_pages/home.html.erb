@@ -1,0 +1,68 @@
+<%provide(:title,'Home')%>
+
+<h1>Sample App</h1>
+<p>Find me in app/views/static_pages/home.html.erb</p>
+<!- two types of link statements gets processed by rails and ordinary anchor tag is replaced 
+as we have used out.println()
+->
+<%= link_to "About us", static_pages_about_url %>
+<%= link_to "About", '#' %><%=select "suitenames", "index", @suiteNamesOfTeam.each_with_index.map {|name, index| [name.suite_name,index]}%>
+
+<!- link_to image_tag will show alt when image not found and below website is included 
+for image or alt text
+->
+<%=link_to image_tag("rails.png", alt: "Rails"), 'http://google.co.in/' %>
+<%=link_to image_tag("rails.png", alt: "Rails"), static_pages_about_path %>
+
+<%= select_tag "people", "<option>David</option>".html_safe%>
+<%=select_tag "count", "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe%>
+<%=select_tag "colors", "<option>Red</option><option>Green</option><option>Blue</option>".html_safe, :multiple => true%>
+<%=select_tag "locations", "<option>Home</option><option selected=\"selected\">select  option</option><option>Out</option>".html_safe%>
+<%=select_tag "access", "<option>Read</option><option>Write</option>".html_safe, :multiple => true, :class => 'form_input'%>
+<%=select_tag "people", options_from_collection_for_select(@people,"id", "name"), :prompt => "Select something"%>
+<%=select_tag "people", options_from_collection_for_select(@people,"id", "name"), :prompt => "Select something"%>
+<%=select_tag "people", options_from_collection_for_select(@people,"id", "name"), :prompt => "Select something"%>
+<br/>
+special array select :
+<%= select "teamnames", "index", @array.each_with_index.map {|name, index| [name,index]}%>
+<%= select "teamnames", "index", @array.map {|index_value| index_value  }%>
+<%= select "teamnames", "index", @array.each_with_index.map {|name, index| [name,index]}%>
+<%= select "teamnames", "index", @array.each_with_index.map {|name, index| puts name; [name,index]}%>
+<% 
+ 
+%>
+
+<br/>
+<br/>
+<table background="<%= asset_path 'rails.png' %>" border=2>
+	  <tr bgcolor="#FFFFFF"> 
+    <td width="20%">TestSuite: </td>
+    <td width="50%">i18nprddailycases.xml</td>
+    <td width="30%" rowspan="10">$500</td>
+  </tr>
+
+  <tr bgcolor="#FFFFFF"> 
+    <td>Environment: </td>
+    <td>prd</td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td>Build Number: </td>
+    <td>2013.1.prod</td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td>Automation Server: </td>
+    <td>op2-qaserv3.hpd5.aus1.snapfish.com</td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td>Start Time: </td>
+    <td>Sun Jan 27 2013 19:00:22 PST</td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td>End Time: </td>
+    <td>Sun Jan 27 2013 20:48:31 PST</td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td>Total Time: </td>
+    <td> 1 Hrs 48 Mins 8 Secs</td>
+  </tr>
+	</table>

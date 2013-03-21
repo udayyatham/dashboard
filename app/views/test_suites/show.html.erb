@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Testsuite id pk:</b>
+  <%= @test_suite.testsuite_id_pk %>
+</p>
+
+<p>
+  <b>Suite name:</b>
+  <%= @test_suite.suite_name %>
+</p>
+
+<p>
+  <b>Suite xml file:</b>
+  <%= @test_suite.suite_xml_file %>
+</p>
+
+<p>
+  <b>Teamnam:</b>
+  <%= @test_suite.teamnam %>
+</p>
+
+<p>
+  <b>Suite description:</b>
+  <%= @test_suite.suite_description %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_suite_path(@test_suite) %> |
+<%= link_to 'Back', test_suites_path %>

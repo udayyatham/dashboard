@@ -1,0 +1,131 @@
+<style type="text/css">
+        div,table, tr, td, p, a, span {
+        font-weight: normal;
+        color: #000;
+        font-family: Arial, Helvetica, Verdana, Sans-serif;
+        font-size: 14px;
+    }
+    .clear{
+        clear: both;
+    }
+     .heading{
+        color :#FFFFFF;
+    }
+    .displaycobrandwise ul{
+        padding:0;margin:0;
+        list-style: none;
+    }
+    .displaycobrandwise .infobar{
+        color: green;
+        width:616px;
+    }
+    .displaycobrandwise #environment{
+        float: left;
+    }
+    .displaycobrandwise #release{
+        float: right;
+    }
+   .table-heading ul li{
+        background-color: #000000;
+    }
+   .table-heading ul li,
+   .cobrandDetails ul li,
+   .cobrandDetails ul li.colspan-5 ul li.col-1{
+        float:left;
+        display:block;
+        border: 1px solid red;
+        width:100px;
+    }
+    .table-heading ul,
+    .cobrandDetails ul{
+        width:720px; 
+    }
+    .cobrandDetails ul li.colspan-5,
+    .cobrandDetails ul li.colspan-5 ul{
+        width:510px;
+    }
+    .cobrandDetails ul li.col-1{
+        width:98px;
+    }
+    .table-heading ul li.green{
+        background-color: #008000;
+    }
+    .table-heading ul li.red{
+        background-color: #FF0000;
+    }
+    .repeatingcell{
+        
+        list-style: none;
+        
+        display: block;
+        
+        border: 1px solid black;
+    }
+    
+</style>
+<div class="displaycobrandwise">
+
+
+
+    <div class="infobar">
+        <label id="environment">Environment :  <%= @plansWiseCobrandsInfoBeanObj.environment%></label> 
+        <label id="release">Release : <%= @plansWiseCobrandsInfoBeanObj.release%></label>
+        <div class="clear"></div>
+    </div>
+    <div class="table-heading">
+        <ul>
+            <li class="col-1 heading"><b>Cobrand</b></li>        
+            <li class="col-2 heading"><b>Browser</b></li>
+            <li class="col-3 heading"><b>Total Cases</b></li>
+            <li class="col-4 heading"><b>Executed</b></li>
+            <li class="col-5 heading green"><b>Passed</b></li>
+            <li class="col-6 heading red"><b>Failed</b></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+
+
+<%@plansWiseCobrandsInfoBeanObj.cobrandInfoBeanHash.each {|cobrandName,cobrandInfoBean|%>
+    
+<div class="cobrandDetails">
+    <ul>
+        <li class="col-1">
+            <a href="testCaseDetails?tpeid=<%= cobrandInfoBean.testPlanExecutedId%>&cobrand=<%= cobrandInfoBean.cobrandName%>">
+                 <%= cobrandInfoBean.cobrandName%></a>
+        </li>
+        <li class="colspan-5">
+                
+            <% cobrandInfoBean.browserInfoBeanList.each{ |browserInfoBean| %>
+            <div>
+            <ul class="repeatingcell clear">        
+                <li class="col-2" >
+                    <a href="testCaseDetails?tpeid=<%= browserInfoBean.testPlanExecutedId%>&cobrand=<%= cobrandInfoBean.cobrandName%>&bsr=<%= browserInfoBean.browser%>"> 
+                        <%= browserInfoBean.browser%></a>
+                </li>
+                <li class="col-3"><%= browserInfoBean.countBean.totalCount%></li>
+                <li class="col-4"><%= browserInfoBean.countBean.executed%></li>
+                <li class="col-5"><font color=green><%= browserInfoBean.countBean.passedCount%></font></li>
+                <li class="col-6"><font color=red><%= browserInfoBean.countBean.failedCount%></font></li>
+            </ul>
+        
+        
+        <div class="clear"></div>
+        </div>
+        
+        <%}%>
+        
+    </li>
+    </ul>
+    <div class="clear"></div>
+    
+</div>  
+
+  
+      
+    
+    <%}%>
+    
+   <%=link_to_function "Back", "history.back()"%>
+   
+</div>
