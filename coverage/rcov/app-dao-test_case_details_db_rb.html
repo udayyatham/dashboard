@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-dao-test_case_details_db_rb.html">app/dao/test_case_details_db.rb</a></td>
-            <td class='right_align'><tt>36</tt></td>
-            <td class='right_align'><tt>11</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.67%</tt></div>
+            <td class='right_align'><tt>75</tt></td>
+            <td class='right_align'><tt>19</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>93.33%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:92px"></div>
-        <div class="uncovered" style="width:8px"></div>
+        <div class="covered" style="width:93px"></div>
+        <div class="uncovered" style="width:7px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>72.73%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>73.68%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:73px"></div>
-        <div class="uncovered" style="width:27px"></div>
+        <div class="covered" style="width:74px"></div>
+        <div class="uncovered" style="width:26px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -101,67 +101,184 @@
         <tr class="inferred">
           <td><pre><a name="line18">18</a> </pre></td>
         </tr>
-        <tr class="marked">
-          <td><pre><a name="line19">19</a>   def getTestcaseDetails(planExecutedId,cobrand)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line20">20</a>     return TestCaseExecuted.find_by_sql(&quot;</pre></td>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a> =begin</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line21">21</a>     SELECT tce.result,tce.failed_reason,tce.failed_url,tce.failed_screenshot,</pre></td>
+          <td><pre><a name="line20">20</a>   Testcases are retrieved based on the testplanExecutedId,cobrand,browser</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line22">22</a>     tce.starttime,tce.endtime,tce.totaltime ,tpe.browser,tpe.windows_host,tc.case_no,tc.case_description</pre></td>
+          <td><pre><a name="line21">21</a>   if browser is not specified then all the browsers related testcases will be returned  </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line23">23</a>     FROM Test_Case_Executed tce, Test_Plan_Executed tpe,Test_Case tc</pre></td>
+          <td><pre><a name="line22">22</a>  @param planExecutedId</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line24">24</a>     WHERE tce.test_plan_executed_id = tpe.testplan_executed_id AND</pre></td>
+          <td><pre><a name="line23">23</a>  @param cobrand</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line25">25</a>     tce.test_case_id = tc.TestCase_id_Pk AND </pre></td>
+          <td><pre><a name="line24">24</a>  @param browser</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line26">26</a>     tce.cobrand='#{cobrand}'  </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line27">27</a>     AND tpe.testplan_executed_id=#{planExecutedId} </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line28">28</a>     order by tce.result, tce.testcase_executed_id&quot;)</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line29">29</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line30">30</a>   </pre></td>
+          <td><pre><a name="line25">25</a> =end  </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line31">31</a>   def getCobrandsWiseResult(resultStatus,testPlanExecutedId,cobrand)</pre></td>
+          <td><pre><a name="line26">26</a>   def getTestcaseDetails(planExecutedId,cobrand,browser=nil)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>     unless browser</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>     Rails.logger.info(&quot;All browsers&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>     return TestCaseExecuted.find_by_sql(&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>     SELECT tce.result,tce.failed_reason,tce.failed_url,tce.failed_screenshot,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>     tce.starttime,tce.endtime,tce.totaltime ,tce.browser,tpe.windows_host,tc.case_no,tc.case_description</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     FROM Test_Case_Executed tce, Test_Plan_Executed tpe,Test_Case tc</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>     WHERE tce.test_plan_executed_id = tpe.testplan_executed_id AND</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>     tce.test_case_id = tc.TestCase_id_Pk AND </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a>     tce.cobrand='#{cobrand}'  </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>     AND tpe.testplan_executed_id=#{planExecutedId} </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>     order by tce.result, tce.testcase_executed_id&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line39">39</a>     Rails.logger.info(&quot;Browser  Specificed : #{browser}&quot;);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>     TestCaseExecuted.find_by_sql(&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>     SELECT tce.result,tce.failed_reason,tce.failed_url,tce.failed_screenshot,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>     tce.starttime,tce.endtime,tce.totaltime ,tce.browser,tpe.windows_host,tc.case_no,tc.case_description</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>     FROM Test_Case_Executed tce, Test_Plan_Executed tpe,Test_Case tc</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>     WHERE tce.test_plan_executed_id = tpe.testplan_executed_id AND</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a>     tce.test_case_id = tc.TestCase_id_Pk AND </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>     tce.cobrand='#{cobrand}'  </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>     AND tpe.testplan_executed_id=#{planExecutedId} </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>     And tce.browser='#{browser}'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>     order by tce.result, tce.testcase_executed_id&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>     </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>   def getCobrandsWiseResult(resultStatus,testPlanExecutedId,cobrand)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line32">32</a>     return TestCaseExecuted.count_by_sql(&quot;SELECT COUNT(*) FROM test_case_executed s WHERE</pre></td>
+          <td><pre><a name="line55">55</a>     return TestCaseExecuted.count_by_sql(&quot;SELECT COUNT(*) FROM test_case_executed s WHERE</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line33">33</a>     s.test_plan_executed_id = #{testPlanExecutedId} AND s.result='#{resultStatus}' AND cobrand ='#{cobrand}'&quot;)</pre></td>
+          <td><pre><a name="line56">56</a>     s.test_plan_executed_id = #{testPlanExecutedId} AND s.result='#{resultStatus}' AND cobrand ='#{cobrand}'&quot;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line34">34</a>   end</pre></td>
+          <td><pre><a name="line57">57</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line35">35</a> </pre></td>
+          <td><pre><a name="line58">58</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line36">36</a>   </pre></td>
+          <td><pre><a name="line59">59</a>   #returns list of cobrands based on testPlanExecution Id</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>   def getAllrecords(testPlanExecutedId)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line61">61</a>     return TestCaseExecuted.find_by_sql(&quot;select cobrand, browser,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line37">37</a> end</pre></td>
+          <td><pre><a name="line62">62</a>     COALESCE(sum(CASE WHEN result='Passed' THEN 1 ELSE 0  END),0) passcount, </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>     COALESCE(sum(CASE WHEN result='Failed' THEN 1 ELSE 0  END),0) failedcount, </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>     COALESCE(sum(CASE WHEN result='Skipped' THEN 1 ELSE 0  END),0) skippedcount </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>     from test_case_executed where test_plan_executed_id =#{testPlanExecutedId} group by cobrand,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a>      browser order by cobrand, browser&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>     #get startime,endtime,totaltime of testplanExecution time in a particular browser</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line70">70</a>   def getBrowserExecutionTime(testPlanExecutedId,browser)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line71">71</a>      return TestCaseExecuted.find_by_sql(&quot;select  starttime,endtime,starttime-endtime as totaltime </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a>      from(select min(starttime) as starttime ,max(endtime) as endtime  </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>      from test_case_executed where test_plan_executed_id =#{testPlanExecutedId} and browser='#{browser}')e&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2013-03-15 13:12:58 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2013-03-22 11:54:26 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

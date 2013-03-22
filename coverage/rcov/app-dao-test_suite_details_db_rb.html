@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-dao-test_suite_details_db_rb.html">app/dao/test_suite_details_db.rb</a></td>
-            <td class='right_align'><tt>31</tt></td>
-            <td class='right_align'><tt>12</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>87.10%</tt></div>
+            <td class='right_align'><tt>53</tt></td>
+            <td class='right_align'><tt>22</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>88.68%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:87px"></div>
-        <div class="uncovered" style="width:13px"></div>
+        <div class="covered" style="width:89px"></div>
+        <div class="uncovered" style="width:11px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>66.67%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>72.73%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:67px"></div>
-        <div class="uncovered" style="width:33px"></div>
+        <div class="covered" style="width:73px"></div>
+        <div class="uncovered" style="width:27px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -71,7 +71,7 @@
         <tr class="marked">
           <td><pre><a name="line8">8</a>   def  getSuiteNames(teamName)</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line9">9</a>     return TestSuite.select(&quot;suite_name&quot;).where(&quot;teamname = ?&quot;,teamName);</pre></td>
         </tr>
         <tr class="inferred">
@@ -98,55 +98,121 @@
         <tr class="marked">
           <td><pre><a name="line17">17</a>   def getTestSuiteId(suiteName)</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line18">18</a>        return TestSuite.where(:suite_name =&gt;suiteName ).select(:testsuite_id_pk)</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line19">19</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line20">20</a>   </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line21">21</a>   #returns first record</pre></td>
+          <td><pre><a name="line20">20</a>   #returns suiteName based on SuiteExecutedId </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line22">22</a>   def getSuiteExectedObj(suiteId)</pre></td>
+          <td><pre><a name="line21">21</a>   def getSuiteName(suiteExecutedId)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line23">23</a>     return TestSuiteExecuted.find(:all,:conditions =&gt; { :test_suite_id =&gt;suiteId}).last</pre></td>
+          <td><pre><a name="line22">22</a>     suiteExecutedObj=TestSuiteExecuted.select(:test_suite_id).where(:testsuite_executed_id =&gt;suiteExecutedId)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line23">23</a>     suiteId=suiteExecutedObj[0].test_suite_id</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line24">24</a>     return TestSuite.where(:testsuite_id_pk =&gt;suiteId ).select(:suite_name)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line24">24</a>   end</pre></td>
+          <td><pre><a name="line25">25</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>   #returns first record</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line25">25</a>   def getSuiteName(testSuiteExecutedId)</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line26">26</a> </pre></td>
+          <td><pre><a name="line28">28</a>   def getSuiteExectedObj(suiteId)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line27">27</a>   return TestSuite.find_by_sql(&quot;select suite_name from test_suite where testsuite_id_pk =(SELECT test_suite_id FROM test_suite_executed tse WHERE</pre></td>
+          <td><pre><a name="line29">29</a>     return TestSuiteExecuted.find(:all,:conditions =&gt; { :test_suite_id =&gt;suiteId}).last</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line28">28</a>     tse.testsuite_executed_id = #{testSuiteExecutedId} )&quot;)</pre></td>
+          <td><pre><a name="line30">30</a>   end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>   def getSuitExecutedObject(suiteExecutedId)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line32">32</a>     return TestSuiteExecuted.find(:all,:conditions =&gt; {:testsuite_executed_id =&gt;suiteExecutedId})</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line29">29</a>   end</pre></td>
+          <td><pre><a name="line33">33</a>   end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>   def getSuiteName(testSuiteExecutedId)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line30">30</a>   </pre></td>
+          <td><pre><a name="line35">35</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line36">36</a>   return TestSuite.find_by_sql(&quot;select suite_name from test_suite where testsuite_id_pk =(SELECT test_suite_id FROM test_suite_executed tse WHERE</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line31">31</a> </pre></td>
+          <td><pre><a name="line37">37</a>     tse.testsuite_executed_id = #{testSuiteExecutedId} )&quot;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line32">32</a> end</pre></td>
+          <td><pre><a name="line38">38</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>   #retrieves recent executed testsuites</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>   def getNTestSuiteExecuted(suiteId,records)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>     return TestSuiteExecuted.find_by_sql(&quot;SELECT testsuite_executed_id,starttime,endtime  FROM test_suite_executed where test_suite_id= '#{suiteId}' ORDER BY endtime DESC LIMIT #{records}&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>     </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>   #returns all unique teamNames</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>   def getAllTeamNames</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>     return TestSuite.find_by_sql(&quot;select DISTINCT teamname from test_suite&quot;);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>   end </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>     </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2013-03-07 09:57:17 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2013-03-22 11:54:26 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

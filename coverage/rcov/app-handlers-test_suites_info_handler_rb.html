@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-handlers-test_suites_info_handler_rb.html">app/handlers/test_suites_info_handler.rb</a></td>
-            <td class='right_align'><tt>90</tt></td>
-            <td class='right_align'><tt>45</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>66.67%</tt></div>
+            <td class='right_align'><tt>142</tt></td>
+            <td class='right_align'><tt>79</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.35%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:67px"></div>
-        <div class="uncovered" style="width:33px"></div>
+        <div class="covered" style="width:75px"></div>
+        <div class="uncovered" style="width:25px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>33.33%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>55.70%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:33px"></div>
-        <div class="uncovered" style="width:67px"></div>
+        <div class="covered" style="width:56px"></div>
+        <div class="uncovered" style="width:44px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -153,19 +153,19 @@
           <td><pre><a name="line35">35</a>   #bug in selecting testsuiteExecuted-------------</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line36">36</a>   #returns the TestSuiteBean Object(contatining testSuite Info and testplan Info related information)</pre></td>
+          <td><pre><a name="line36">36</a>   # returns the testsuitebean object when passed testSuiteName</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line37">37</a>   def getTestSuiteInfoBean(testSuiteName)</pre></td>
+          <td><pre><a name="line37">37</a>   def getTestSuiteInfoBeanbyName(testSuiteName)</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line38">38</a>     #need to check negative scenarios</pre></td>
         </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line39">39</a>     testsuiteDetailsDBobj=TestSuiteDetailsDb.new();</pre></td>
-        </tr>
         <tr class="inferred">
-          <td><pre><a name="line40">40</a>     #getSuite Id basedon suiteName given</pre></td>
+          <td><pre><a name="line39">39</a>     #getSuite Id basedon suiteName given</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line40">40</a>     testsuiteDetailsDBobj=TestSuiteDetailsDb.new();</pre></td>
         </tr>
         <tr class="uncovered">
           <td><pre><a name="line41">41</a>     testsuiteId =testsuiteDetailsDBobj.getTestSuiteId(testSuiteName);</pre></td>
@@ -183,147 +183,303 @@
           <td><pre><a name="line45">45</a>     #now use suiteObject and build time bean object</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line46">46</a>     timebean=getTimebeanObj(testSuiteExectedObj.starttime,</pre></td>
+          <td><pre><a name="line46">46</a>     return testSuitesBean = constructSuiteBean(testSuiteExectedObj,testSuiteName);</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line47">47</a>     testSuiteExectedObj.endtime,testSuiteExectedObj.totaltime);</pre></td>
+          <td><pre><a name="line47">47</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line48">48</a> </pre></td>
+          <td><pre><a name="line48">48</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>   # returns the testsuitebean object when passed suiteExecutedId</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>   def getTestSuiteInfoBean(suiteExecutedId)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line49">49</a>     testplanDetailsDbObj=TestPlanDetailsDb.new();</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line50">50</a>     #getPlansExecuecd for the suite execution requested</pre></td>
+          <td><pre><a name="line51">51</a>     testsuiteDetailsDBobj=TestSuiteDetailsDb.new();</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line51">51</a>     plansExecutedList= testplanDetailsDbObj.getplanExecutedObjects(</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line52">52</a>     testSuiteExectedObj.testsuite_executed_id);</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line53">53</a>     #constructing testsuiteBean here</pre></td>
+          <td><pre><a name="line52">52</a>    testSuiteExectedObj = testsuiteDetailsDBobj.getSuitExecutedObject(suiteExecutedId);</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line54">54</a>     testSuitesBean=TestSuitesBean.new(</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line55">55</a>     testSuiteName,testSuiteExectedObj.environment,testSuiteExectedObj.build_number,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line56">56</a>     testSuiteExectedObj.servername,timebean,getPlansBean(plansExecutedList))</pre></td>
+          <td><pre><a name="line53">53</a>    testSuite=testsuiteDetailsDBobj.getSuiteName(suiteExecutedId)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line57">57</a>     Rails.logger.info(&quot;testSuitesBean #{testSuitesBean} for testsuiteName</pre></td>
+          <td><pre><a name="line54">54</a>    return testSuitesBean = constructSuiteBean(testSuiteExectedObj[0],testSuite[0].suite_name);</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line58">58</a>      #{testSuitesBean.suiteName}&quot;);</pre></td>
+          <td><pre><a name="line55">55</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>   #construct and return the testsuiteBean by talking TestSuite ActiveRecord Object of particular suiteExecuteId</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>   def constructSuiteBean(testSuiteExectedObj,testSuiteName)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line59">59</a>     return testSuitesBean</pre></td>
+          <td><pre><a name="line59">59</a>      timebean=getTimebeanObj(testSuiteExectedObj.starttime,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line60">60</a>   end</pre></td>
+          <td><pre><a name="line60">60</a>     testSuiteExectedObj.endtime,testSuiteExectedObj.totaltime);</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line61">61</a> </pre></td>
         </tr>
-        <tr class="inferred">
-          <td><pre><a name="line62">62</a>   #returns an list of testplanObjectsBean</pre></td>
+        <tr class="uncovered">
+          <td><pre><a name="line62">62</a>     testplanDetailsDbObj=TestPlanDetailsDb.new();</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line63">63</a>   #returns argument itself if no return type found after iterater</pre></td>
+          <td><pre><a name="line63">63</a>     #getPlansExecuecd for the suite execution requested</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line64">64</a>     plansExecutedList= testplanDetailsDbObj.getplanExecutedObjects(</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>     testSuiteExectedObj.testsuite_executed_id);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a>     #constructing testsuiteBean here</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line67">67</a>     testSuitesBean=TestSuitesBean.new(</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a>     testSuiteName,testSuiteExectedObj.environment,testSuiteExectedObj.build_number,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>     testSuiteExectedObj.servername,timebean,getPlansBean(plansExecutedList))</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line70">70</a>     Rails.logger.info(&quot;testSuitesBean #{testSuitesBean} for testsuiteName</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>      #{testSuitesBean.suiteName}&quot;);</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line72">72</a>      return testSuitesBean;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>   #returns an list of testplanObjectsBean</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a>   #returns argument itself if no return type found after iterater</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line64">64</a>   def getPlansBean(plansExecutedList)</pre></td>
+          <td><pre><a name="line77">77</a>   def getPlansBean(plansExecutedList)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line65">65</a>     testplanDetailsDbObj=TestPlanDetailsDb.new();</pre></td>
+          <td><pre><a name="line78">78</a>     testplanDetailsDbObj=TestPlanDetailsDb.new();</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line66">66</a>     testPlanBeanList = Array.new</pre></td>
+          <td><pre><a name="line79">79</a>     testPlanBeanList = Array.new</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line67">67</a>     distinctTestPlanIdList=Array.new</pre></td>
+          <td><pre><a name="line80">80</a>     distinctTestPlanIdList=Array.new</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line68">68</a>     if plansExecutedList</pre></td>
+          <td><pre><a name="line81">81</a>     if plansExecutedList</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line69">69</a>       plansExecutedList.each do |plan_executed|</pre></td>
+          <td><pre><a name="line82">82</a>       plansExecutedList.each do |plan_executed|</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line70">70</a>         if plan_executed then</pre></td>
+          <td><pre><a name="line83">83</a>         if plan_executed then</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line71">71</a>           testplanObj=testplanDetailsDbObj.getplanObj(plan_executed.test_plan_id);</pre></td>
+          <td><pre><a name="line84">84</a>           testplanObj=testplanDetailsDbObj.getplanObj(plan_executed.test_plan_id);</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line72">72</a>           planName= testplanObj ? (testplanObj.plan_name):(raise &quot;testplan object</pre></td>
+          <td><pre><a name="line85">85</a>           planName= testplanObj ? (testplanObj.plan_name):(raise &quot;testplan object</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line73">73</a>            not loaded properly&quot;)</pre></td>
+          <td><pre><a name="line86">86</a>            not loaded properly&quot;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line74">74</a>           #continue if team name exists</pre></td>
+          <td><pre><a name="line87">87</a>           #continue if team name exists</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line75">75</a>           if( distinctTestPlanIdList.include? planName)</pre></td>
+          <td><pre><a name="line88">88</a>           if( distinctTestPlanIdList.include? planName)</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line76">76</a>           next;</pre></td>
+          <td><pre><a name="line89">89</a>           next;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line77">77</a>           else</pre></td>
+          <td><pre><a name="line90">90</a>           else</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line78">78</a>           distinctTestPlanIdList.push(planName);</pre></td>
+          <td><pre><a name="line91">91</a>           distinctTestPlanIdList.push(planName);</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line79">79</a>           plan_info=TestPlansBean.new(testplanObj.plan_name,testplanObj.owner,</pre></td>
+          <td><pre><a name="line92">92</a>           plan_info=TestPlansBean.new(testplanObj.plan_name,testplanObj.owner,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line80">80</a>           HandlerUtils.getCountInfoBean(plan_executed.testplan_executed_id),</pre></td>
+          <td><pre><a name="line93">93</a>           HandlerUtils.getCountInfoBean(plan_executed.testplan_executed_id),</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line81">81</a>          plan_executed.test_suite_executed_id,plan_executed.test_plan_id);</pre></td>
+          <td><pre><a name="line94">94</a>          plan_executed.test_suite_executed_id,plan_executed.test_plan_id);</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line82">82</a>         testPlanBeanList.push(plan_info);</pre></td>
+          <td><pre><a name="line95">95</a>         testPlanBeanList.push(plan_info);</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line83">83</a>         end</pre></td>
+          <td><pre><a name="line96">96</a>         end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line84">84</a>         end</pre></td>
+          <td><pre><a name="line97">97</a>         end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line85">85</a>       end</pre></td>
+          <td><pre><a name="line98">98</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line86">86</a>     end</pre></td>
+          <td><pre><a name="line99">99</a>     end</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line87">87</a>     Rails.logger.info(&quot;testPlanBeanList returned #{testPlanBeanList}&quot;);</pre></td>
+          <td><pre><a name="line100">100</a>     Rails.logger.info(&quot;testPlanBeanList returned #{testPlanBeanList}&quot;);</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line88">88</a>     return testPlanBeanList</pre></td>
+          <td><pre><a name="line101">101</a>     return testPlanBeanList</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line89">89</a>   end</pre></td>
+          <td><pre><a name="line102">102</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line90">90</a> </pre></td>
+          <td><pre><a name="line103">103</a>  #returns Teamwise Suites Hash</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line104">104</a>   def getTeamWiseSuitesHash</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line105">105</a>     teamWiseSuitesHash=Hash.new();</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line106">106</a>     testsuiteDetailsDBobj=TestSuiteDetailsDb.new();</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line91">91</a> end</pre></td>
+          <td><pre><a name="line107">107</a>     #get All teamNames</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line108">108</a>     teamNames=testsuiteDetailsDBobj.getAllTeamNames</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line109">109</a>      raise &quot;No teamNames found&quot; unless teamNames</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line110">110</a>      teamNames.each do |testSuite|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>        team=testSuite.teamname</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line112">112</a>        testSuitesHash=Hash.new();</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>        #get all suiteNames for TeamNames</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line114">114</a>        suiteNames=testsuiteDetailsDBobj.getSuiteNames(team);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line115">115</a>        raise &quot;No suiteNames found&quot; unless suiteNames</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line116">116</a>        suiteNames.each do |suite|</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>           #getSuite Id basedon suiteName given</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line118">118</a>           testsuiteId =testsuiteDetailsDBobj.getTestSuiteId(suite.suite_name);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line119">119</a>           raise &quot;No testsuiteId found for #{suite}&quot; unless testsuiteId     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line120">120</a>           suiteId=testsuiteId[0].testsuite_id_pk</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line121">121</a>           Rails.logger.info(&quot;suiteId returned  #{suiteId}&quot;);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line122">122</a>           testSuiteExecutedList=testsuiteDetailsDBobj.getNTestSuiteExecuted(suiteId,7);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line123">123</a>           Rails.logger.info(&quot;testSuiteExecutedList returned  #{testSuiteExecutedList}&quot;);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line124">124</a>           raise &quot;Could Not retrieve testSuiteExecutedList #{suiteId}&quot; unless testSuiteExecutedList</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line125">125</a>           testSuiteExecutedIdList=Array.new </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line126">126</a>           testSuiteExecutedList.each do |testSuiteExecuted|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line127">127</a>             suiteExecutedId=testSuiteExecuted.testsuite_executed_id</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line128">128</a>             Rails.logger.info(&quot;testSuiteExecutedId to be pushed  #{suiteExecutedId} for suiteName #{suite.suite_name}&quot;);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line129">129</a>             testSuitesInfoForEachLink=TestSuitesInfoForLinks.new(suiteExecutedId,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line130">130</a>                 testSuiteExecuted.starttime,testSuiteExecuted.endtime)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line131">131</a>                             </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line132">132</a>             testSuiteExecutedIdList.push(testSuitesInfoForEachLink);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line133">133</a>           end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line134">134</a>           #remove hash and store in a array of objects</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line135">135</a>        testSuitesHash.store(suite.suite_name,testSuiteExecutedIdList);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line136">136</a>        end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line137">137</a>       teamWiseSuitesHash.store(team,testSuitesHash);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line138">138</a>      end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line139">139</a>      return  teamWiseSuitesHash; </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line140">140</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line141">141</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line142">142</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2013-03-07 09:57:17 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2013-03-22 11:54:26 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

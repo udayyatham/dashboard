@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-handlers-test_case_details_handler_rb.html">app/handlers/test_case_details_handler.rb</a></td>
-            <td class='right_align'><tt>98</tt></td>
-            <td class='right_align'><tt>41</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>97.96%</tt></div>
+            <td class='right_align'><tt>104</tt></td>
+            <td class='right_align'><tt>40</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:98px"></div>
-        <div class="uncovered" style="width:2px"></div>
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.12%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:95px"></div>
-        <div class="uncovered" style="width:5px"></div>
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -65,149 +65,149 @@
         <tr class="marked">
           <td><pre><a name="line6">6</a> class TestCaseDetailsHandler</pre></td>
         </tr>
-        <tr class="marked">
-          <td><pre><a name="line7">7</a>   @@testCaseDetailsHandler=TestCaseDetailsHandler.new();</pre></td>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a>   #provide only single object of testCse</pre></td>
+          <td><pre><a name="line8">8</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line9">9</a>   def self.getTestCaseDetailsHandler()</pre></td>
-        </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line10">10</a>     return @@testCaseDetailsHandler</pre></td>
+          <td><pre><a name="line9">9</a> def getTestCaseDetailsBean(testplanExecutedId,cobrand,browser)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line11">11</a>   end</pre></td>
+          <td><pre><a name="line10">10</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a> Rails.logger.info(&quot;Testcases to be retrieved for testplanExecutedId #{testplanExecutedId}&quot;);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>     testCaseDetailsDb=TestCaseDetailsDb.new</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> </pre></td>
+          <td><pre><a name="line13">13</a>   #  browserwiseTestCaseDetails=Hash.new</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line13">13</a> def getTestCaseDetailsBean(palnExecutedIDList,cobrand)</pre></td>
+          <td><pre><a name="line14">14</a>     browserTestCaseDetailsBeanList=Array.new</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line14">14</a>     puts &quot;Number of plans executed: &quot;</pre></td>
+          <td><pre><a name="line15">15</a>     raise &quot;testplanId is expected&quot; unless testplanExecutedId</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line15">15</a>     print palnExecutedIDList.length</pre></td>
+          <td><pre><a name="line16">16</a>     raise &quot;cobrand is expected&quot; unless cobrand</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line16">16</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line17">17</a>     testCaseDetailsDb=TestCaseDetailsDb.new</pre></td>
+          <td><pre><a name="line17">17</a>      </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line18">18</a>   #  browserwiseTestCaseDetails=Hash.new</pre></td>
+          <td><pre><a name="line18">18</a>   #consider browser </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line19">19</a>     browserTestCaseDetailsBeanList=Array.new</pre></td>
+          <td><pre><a name="line19">19</a>    casesRecord=if browser</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line20">20</a>     palnExecutedIDList.each do |planExecutedID|</pre></td>
+          <td><pre><a name="line20">20</a>       Rails.logger.info(&quot;testplanExecutedId #{testplanExecutedId} for -&gt; cobrand #{cobrand}, and browser #{browser}&quot;);</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>       testCaseDetailsDb.getTestcaseDetails(testplanExecutedId,cobrand,browser)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line21">21</a> </pre></td>
+          <td><pre><a name="line22">22</a>     else</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line22">22</a>       casesRecord=testCaseDetailsDb.getTestcaseDetails(planExecutedID,cobrand)</pre></td>
+          <td><pre><a name="line23">23</a>       Rails.logger.info(&quot;testplanExecutedId #{testplanExecutedId} for cobrand #{cobrand}&quot;);</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line23">23</a>       testCaseDetailsBeanList = Array.new</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line24">24</a>       browse=nil</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line25">25</a>       host=nil</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line26">26</a>       case_info=nil</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line27">27</a>       casesRecord.each do |caseInfo|</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line28">28</a>         caseNo=caseInfo.case_no</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line29">29</a>         caseDescription=caseInfo.case_description</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line30">30</a>         host=caseInfo.windows_host</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line31">31</a>         startTime=caseInfo.starttime</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line32">32</a>         endTime=caseInfo.endtime</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line33">33</a>         toatalTime=caseInfo.totaltime</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line34">34</a>         result=caseInfo.result</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line35">35</a>         failedReason=caseInfo.failed_reason</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line36">36</a>         failedUrl=caseInfo.failed_url</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line37">37</a>         failedSceenShot=caseInfo.failed_screenshot</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line38">38</a>         browse=caseInfo.browser</pre></td>
+          <td><pre><a name="line24">24</a>       testCaseDetailsDb.getTestcaseDetails(testplanExecutedId,cobrand)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line39">39</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line40">40</a>         timebean=getTimebeanObj(startTime,endTime,toatalTime)</pre></td>
+          <td><pre><a name="line25">25</a>     end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line41">41</a> </pre></td>
+          <td><pre><a name="line26">26</a>       </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line42">42</a>         case_info=TestCaseDetailsBean.new(caseNo,caseDescription,result,failedReason,failedSceenShot,failedUrl,timebean)</pre></td>
+          <td><pre><a name="line27">27</a>       testCaseDetailsBeanList = Array.new</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>       browse=nil</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>       host=nil</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>       case_info=nil</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line43">43</a> </pre></td>
+          <td><pre><a name="line31">31</a>       </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line44">44</a>         testCaseDetailsBeanList.push(case_info);</pre></td>
+          <td><pre><a name="line32">32</a>       casesRecord.each do |caseInfo|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>         caseNo=caseInfo.case_no</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>         caseDescription=caseInfo.case_description</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>         host=caseInfo.windows_host</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>         startTime=caseInfo.starttime</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>         endTime=caseInfo.endtime</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>         toatalTime=caseInfo.totaltime</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line39">39</a>         result=caseInfo.result</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>         failedReason=caseInfo.failed_reason</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>         failedUrl=caseInfo.failed_url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>         failedSceenShot=caseInfo.failed_screenshot</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>         browse=caseInfo.browser</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line45">45</a>       end</pre></td>
+          <td><pre><a name="line44">44</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line46">46</a>         browserwiseTestCase_info=BrowserTestCaseDetailsBean.new(browse,nil,host,testCaseDetailsBeanList)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line47">47</a>         browserTestCaseDetailsBeanList.push(browserwiseTestCase_info)</pre></td>
+          <td><pre><a name="line45">45</a>         timebean=getTimebeanObj(startTime,endTime,toatalTime)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line48">48</a>     end</pre></td>
+          <td><pre><a name="line46">46</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line49">49</a>         return browserTestCaseDetailsBeanList;  </pre></td>
+          <td><pre><a name="line47">47</a>         case_info=TestCaseDetailsBean.new(caseNo,caseDescription,result,failedReason,failedSceenShot,failedUrl,timebean)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line50">50</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line51">51</a>   </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line52">52</a> </pre></td>
+          <td><pre><a name="line48">48</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line53">53</a>   def getTimebeanObj(startTime,endTime,totalTime)</pre></td>
+          <td><pre><a name="line49">49</a>         testCaseDetailsBeanList.push(case_info);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>       end</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line54">54</a>     return TimeBean.new(startTime,endTime,totalTime);</pre></td>
+          <td><pre><a name="line51">51</a>         browserwiseTestCase_info=BrowserTestCaseDetailsBean.new(browse,nil,host,testCaseDetailsBeanList)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>         browserTestCaseDetailsBeanList.push(browserwiseTestCase_info)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>         return browserTestCaseDetailsBeanList;  </pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line55">55</a>   end</pre></td>
@@ -215,139 +215,157 @@
         <tr class="inferred">
           <td><pre><a name="line56">56</a>   </pre></td>
         </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a> </pre></td>
+        </tr>
         <tr class="marked">
-          <td><pre><a name="line57">57</a>   def hello</pre></td>
+          <td><pre><a name="line58">58</a>   def getTimebeanObj(startTime,endTime,totalTime)</pre></td>
         </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line58">58</a>     return TimeBean.new(startTime,endTime,totalTime);</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line59">59</a>   end</pre></td>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     return TimeBean.new(startTime,endTime,totalTime);</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line60">60</a> end</pre></td>
+          <td><pre><a name="line60">60</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line61">61</a> </pre></td>
+          <td><pre><a name="line61">61</a>   </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line62">62</a> </pre></td>
+          <td><pre><a name="line62">62</a> end</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line63">63</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line64">64</a> =begin</pre></td>
+          <td><pre><a name="line64">64</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line65">65</a>   def getTestCaseDetailsBean(palnExecutedIDList,cobrand)</pre></td>
+          <td><pre><a name="line65">65</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line66">66</a>       puts &quot;Nunber of plans executed: &quot;</pre></td>
+          <td><pre><a name="line66">66</a> =begin</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line67">67</a>       print palnExecutedIDList.length</pre></td>
+          <td><pre><a name="line67">67</a>   def getTestCaseDetailsBean(palnExecutedIDList,cobrand)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line68">68</a>   </pre></td>
+          <td><pre><a name="line68">68</a>       puts &quot;Nunber of plans executed: &quot;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line69">69</a>       testCaseDetailsDb=TestCaseDetailsDb.new</pre></td>
+          <td><pre><a name="line69">69</a>       print palnExecutedIDList.length</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line70">70</a>       browserwiseTestCaseDetails=Hash.new</pre></td>
+          <td><pre><a name="line70">70</a>   </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line71">71</a>       palnExecutedIDList.each do |planExecutedID|</pre></td>
+          <td><pre><a name="line71">71</a>       testCaseDetailsDb=TestCaseDetailsDb.new</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line72">72</a>   </pre></td>
+          <td><pre><a name="line72">72</a>       browserwiseTestCaseDetails=Hash.new</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line73">73</a>         casesRecord=testCaseDetailsDb.getTestcaseDetails(planExecutedID,cobrand)</pre></td>
+          <td><pre><a name="line73">73</a>       palnExecutedIDList.each do |planExecutedID|</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line74">74</a>         testCaseBeanList = Array.new</pre></td>
+          <td><pre><a name="line74">74</a>   </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line75">75</a>         browse=nil</pre></td>
+          <td><pre><a name="line75">75</a>         casesRecord=testCaseDetailsDb.getTestcaseDetails(planExecutedID,cobrand)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line76">76</a>         casesRecord.each do |caseInfo|</pre></td>
+          <td><pre><a name="line76">76</a>         testCaseBeanList = Array.new</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line77">77</a>           caseNo=caseInfo.case_no</pre></td>
+          <td><pre><a name="line77">77</a>         browse=nil</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line78">78</a>           caseDescription=caseInfo.case_description</pre></td>
+          <td><pre><a name="line78">78</a>         casesRecord.each do |caseInfo|</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line79">79</a>           host=caseInfo.windows_host</pre></td>
+          <td><pre><a name="line79">79</a>           caseNo=caseInfo.case_no</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line80">80</a>           startTime=caseInfo.starttime</pre></td>
+          <td><pre><a name="line80">80</a>           caseDescription=caseInfo.case_description</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line81">81</a>           endTime=caseInfo.endtime</pre></td>
+          <td><pre><a name="line81">81</a>           host=caseInfo.windows_host</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line82">82</a>           toatalTime=caseInfo.totaltime</pre></td>
+          <td><pre><a name="line82">82</a>           startTime=caseInfo.starttime</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line83">83</a>           result=caseInfo.result</pre></td>
+          <td><pre><a name="line83">83</a>           endTime=caseInfo.endtime</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line84">84</a>           failedReason=caseInfo.failed_reason</pre></td>
+          <td><pre><a name="line84">84</a>           toatalTime=caseInfo.totaltime</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line85">85</a>           failedUrl=caseInfo.failed_url</pre></td>
+          <td><pre><a name="line85">85</a>           result=caseInfo.result</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line86">86</a>           failedSceenShot=caseInfo.failed_screenshot</pre></td>
+          <td><pre><a name="line86">86</a>           failedReason=caseInfo.failed_reason</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line87">87</a>           browse=caseInfo.browser</pre></td>
+          <td><pre><a name="line87">87</a>           failedUrl=caseInfo.failed_url</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line88">88</a>   </pre></td>
+          <td><pre><a name="line88">88</a>           failedSceenShot=caseInfo.failed_screenshot</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line89">89</a>           timebean=getTimebeanObj(startTime,endTime,toatalTime)</pre></td>
+          <td><pre><a name="line89">89</a>           browse=caseInfo.browser</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line90">90</a>   </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line91">91</a>           case_info=TestCaseDetailsBean.new(caseNo,caseDescription,result,failedReason,failedSceenShot,failedUrl,timebean)</pre></td>
+          <td><pre><a name="line91">91</a>           timebean=getTimebeanObj(startTime,endTime,toatalTime)</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line92">92</a>   </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line93">93</a>           testCaseBeanList.push(case_info);</pre></td>
+          <td><pre><a name="line93">93</a>           case_info=TestCaseDetailsBean.new(caseNo,caseDescription,result,failedReason,failedSceenShot,failedUrl,timebean)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line94">94</a>         end</pre></td>
+          <td><pre><a name="line94">94</a>   </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line95">95</a>           browserwiseTestCaseDetails[browse]=testCaseBeanList</pre></td>
+          <td><pre><a name="line95">95</a>           testCaseBeanList.push(case_info);</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line96">96</a>       end</pre></td>
+          <td><pre><a name="line96">96</a>         end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line97">97</a>           return browserwiseTestCaseDetails;  </pre></td>
+          <td><pre><a name="line97">97</a>           browserwiseTestCaseDetails[browse]=testCaseBeanList</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line98">98</a>     end</pre></td>
+          <td><pre><a name="line98">98</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line99">99</a> =end</pre></td>
+          <td><pre><a name="line99">99</a>           return browserwiseTestCaseDetails;  </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a>     </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>     def hello</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a>     return TimeBean.new(startTime,endTime,totalTime);</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line105">105</a> =end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2013-03-15 13:12:58 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2013-03-22 11:54:26 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

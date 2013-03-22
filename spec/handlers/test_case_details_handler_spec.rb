@@ -49,7 +49,7 @@ describe TestCaseDetailsHandler do
     browserwiseTestCase_info=BrowserTestCaseDetailsBean.new("firefox","","localhost:4444",testCaseDetailsBeanList)
     browserTestCaseDetailsBeanList=Array.new.push(browserwiseTestCase_info)
     @handler.stub(:getTestCaseDetailsBean).and_return(browserTestCaseDetailsBeanList)
-    @handler.getTestCaseDetailsBean([271],"snapfish").should be(browserTestCaseDetailsBeanList)
+    @handler.getTestCaseDetailsBean(271,"snapfish","firefox").should be(browserTestCaseDetailsBeanList)
   end
 
   it "cheching getTestcaseDetails method" do
@@ -59,32 +59,32 @@ describe TestCaseDetailsHandler do
   end
 
   it "cheching caseNo property" do
-    actual=@handler.getTestCaseDetailsBean([485],"snapfish")
+    actual=@handler.getTestCaseDetailsBean(485,"snapfish",nil)
     actual.first.testCaseDetailsBeanList.first.caseNo.should eq("24")
   end
-  
+
   it "checking browserName property" do
-    actual=@handler.getTestCaseDetailsBean([485],"snapfish")
+    actual=@handler.getTestCaseDetailsBean(485,"snapfish","firefox")
     actual.first.browserName.should eq("firefox")
   end
-  
+
   it "cheching result property" do
-    actual=@handler.getTestCaseDetailsBean([485],"snapfish")
+    actual=@handler.getTestCaseDetailsBean(485,"snapfish","firefox")
     actual.first.testCaseDetailsBeanList.first.result.should eq("Failed")
   end
 
-it "cheching description property" do
-    actual=@handler.getTestCaseDetailsBean([485],"snapfish")
+  it "cheching description property" do
+    actual=@handler.getTestCaseDetailsBean(485,"snapfish","firefox")
     actual.first.testCaseDetailsBeanList.first.description.should_not be_empty
   end
-  
+
   it "cheching timeBean property" do
-    actual=@handler.getTestCaseDetailsBean([485],"snapfish")
+    actual=@handler.getTestCaseDetailsBean(485,"snapfish","firefox")
     actual.first.testCaseDetailsBeanList.first.timeBean.should_not be_nil
   end
-  
+
   it "cheching failedReason property" do
-    actual=@handler.getTestCaseDetailsBean([485],"snapfish")
+    actual=@handler.getTestCaseDetailsBean(485,"snapfish","firefox")
     actual.first.testCaseDetailsBeanList.first.failedReason.should_not be_nil
   end
 =begin
@@ -96,7 +96,5 @@ case_info=TestCaseDetailsBean.new(12,"Verify secure page for Update Account conf
 browserwiseTestCase_info=BrowserTestCaseDetailsBean.("firefox","","localhost:4444",testCaseDetailsBeanList)
 
 order.calculate_total_price(stub(:price => 1.99),stub(:price => 2.99))
-
-end
 =end
-end
+end 

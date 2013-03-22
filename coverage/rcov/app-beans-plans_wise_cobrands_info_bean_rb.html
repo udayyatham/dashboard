@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-beans-plans_wise_cobrands_info_bean_rb.html">app/beans/plans_wise_cobrands_info_bean.rb</a></td>
-            <td class='right_align'><tt>11</tt></td>
-            <td class='right_align'><tt>8</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>54.55%</tt></div>
+            <td class='right_align'><tt>10</tt></td>
+            <td class='right_align'><tt>7</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:55px"></div>
-        <div class="uncovered" style="width:45px"></div>
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>37.50%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:38px"></div>
-        <div class="uncovered" style="width:62px"></div>
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -54,39 +54,36 @@
           <td><pre><a name="line2">2</a> class PlansWiseCobrandsInfoBean</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line3">3</a>   attr_reader :cobrandInfoBeanHash,:testPlanExecutedIdList,:environment,</pre></td>
+          <td><pre><a name="line3">3</a>   attr_reader :cobrandInfoBeanHash,:environment,</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line4">4</a>   :release,:suiteName</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line5">5</a>   def initialize(cobrandInfoBeanHash,testPlanExecutedIdList,environment,release,suiteName)</pre></td>
+          <td><pre><a name="line5">5</a>   def initialize(cobrandInfoBeanHash,environment,release,suiteName)</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line6">6</a>     @cobrandInfoBeanHash=cobrandInfoBeanHash;</pre></td>
         </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line7">7</a>     @testPlanExecutedIdList=testPlanExecutedIdList;</pre></td>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>     @environment=environment;</pre></td>
         </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line8">8</a>     @environment=environment;</pre></td>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>     @release=release;</pre></td>
         </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line9">9</a>     @release=release;</pre></td>
-        </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line10">10</a>     @suiteName=suiteName;</pre></td>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>     @suiteName=suiteName;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line11">11</a>   end</pre></td>
+          <td><pre><a name="line10">10</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> end</pre></td>
+          <td><pre><a name="line11">11</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2013-03-07 09:57:17 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2013-03-22 11:54:26 +0530 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

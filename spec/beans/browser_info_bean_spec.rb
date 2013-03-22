@@ -6,21 +6,26 @@ describe BrowserInfoBean do
   let(:browserName){"firefox"}
   let(:testPlanExecId){200}
   let(:host){"localhost:4444"}
-  
   before(:each) do
   #mocking objects of browserInfoBean
     @browserInfoObj = mock(BrowserInfoBean)
     @browserInfoObj.stub(:testPlanExecutedId).and_return(:testPlanExecId)
     @browserInfoObj.stub(:browser).and_return(:browserName)
     @browserInfoObj.stub(:windowsHost).and_return(:host)
-    @browserInfoObj.stub(:timeBean).and_return(
-                                      TimeBean.new("9:40am","10:50am","1hr 10mins"))
-    @browserInfoObj.stub(:countBean).and_return(CountInfoBean.new(15,1,1,17))
-    
-    @actualBrowserInfoObj=BrowserInfoBean.new(
-    :browserName,:testPlanExecId,:host,
-    TimeBean.new("9:40am","10:50am","1hr 10mins"),CountInfoBean.new(15,1,1,17)
-    )
+    timebean=mock(TimeBean)
+    timebean.stub(:startTime).and_return("9:40am")
+    timebean.stub(:endTime).and_return("10:50am")
+    timebean.stub(:totalTime).and_return("1hr 10mins")
+    @browserInfoObj.stub(:timeBean).and_return(timebean)
+     countbean=double(CountInfoBean)
+    countbean.stub(:passedCount).and_return(10)
+    countbean.stub(:failedCount).and_return(10)
+    countbean.stub(:skippedCount).and_return(10)
+    countbean.stub(:executed).and_return(20)
+    countbean.stub(:totalCount).and_return(30)
+    @browserInfoObj.stub(:countBean).and_return(countbean)
+    @actualBrowserInfoObj=BrowserInfoBean.new(:browserName,:testPlanExecId,:host,
+    TimeBean.new("9:40am","10:50am","1hr 10mins"),CountInfoBean.new(10,10,10,30,20))
   end
 
   describe "#new" do
@@ -65,29 +70,32 @@ describe BrowserInfoBean do
                                           @actualBrowserInfoObj.timeBean.endTime)
     end
     it "totalTime should match" do
-      @browserInfoObj.timeBean.totalTime.should eql(
-                                          @actualBrowserInfoObj.timeBean.totalTime)
+      @actualBrowserInfoObj.timeBean.totalTime.should eql(@browserInfoObj.timeBean.totalTime)
     end
   end
-  
-    describe "#countBean" do
-    it ":passedCount should match" do
-      @browserInfoObj.countBean.passedCount.should ==(
-                                        @actualBrowserInfoObj.countBean.passedCount)
-    end
-    it ":failedCount should match" do
-      @browserInfoObj.countBean.failedCount.should ==(
-                                        @actualBrowserInfoObj.countBean.failedCount)
-    end
-    it ":skippedCount should match" do
-      @browserInfoObj.countBean.skippedCount.should ==(
-                                        @actualBrowserInfoObj.countBean.skippedCount)
+    
+     describe "#countBean" do
+    it "should return the correct passedCount" do
+      
+      (@actualBrowserInfoObj.countBean.passedCount).should eq @browserInfoObj.countBean.passedCount
     end
     
-    it ":totalCount should match" do
-      @browserInfoObj.countBean.totalCount.should ==(
-                                        @actualBrowserInfoObj.countBean.totalCount)
+    it "should return the correct failedCount" do
+      (@actualBrowserInfoObj.countBean.failedCount).should eq @browserInfoObj.countBean.failedCount
     end
     
+    it "should return the correct skippedCount" do
+      (@actualBrowserInfoObj.countBean.skippedCount).should eq @browserInfoObj.countBean.skippedCount
+    end
+    
+    it "should return the correct executedCount" do
+      (@actualBrowserInfoObj.countBean.executed).should eq @browserInfoObj.countBean.executed
+    end
+    
+    it "should return the correct totalCount" do
+
+      (@actualBrowserInfoObj.countBean.totalCount).should eq @browserInfoObj.countBean.totalCount
+    end
   end
+
 end
